@@ -49,7 +49,9 @@ const copyAssets = (text, base) => {
   }
 };
 
-let md = fs.readFileSync(mdPath, 'utf8').replace(/^---[\s\S]*?---\n/, '');
+// Notes meant for other viewers of the Markdown (the shared folder, an editor) go between site:hide markers.
+const hide = (t) => t.replace(/<!-- site:hide -->[\s\S]*?<!-- \/site:hide -->\n*/g, '');
+let md = hide(fs.readFileSync(mdPath, 'utf8').replace(/^---[\s\S]*?---\n/, ''));
 copyAssets(md, SRC);
 let pdfName = '';
 if (pdfArg) { pdfName = path.basename(pdfArg); fs.copyFileSync(pdfArg, path.join(S, pdfName)); }
@@ -144,7 +146,7 @@ if (qdirArg && fs.existsSync(qdirArg)) {
   const qRenderer = new marked.Renderer();
   qRenderer.code = renderer.code;
   for (const f of fs.readdirSync(qdirArg).filter((f) => f.endsWith('.md'))) {
-    let q = fs.readFileSync(path.join(qdirArg, f), 'utf8');
+    let q = hide(fs.readFileSync(path.join(qdirArg, f), 'utf8'));
     copyAssets(q, qdirArg);
     const qt = (q.match(/^# (.*)$/m) || [, f])[1];
     q = q.replace(/^# .*\n/m, '');

@@ -34,6 +34,9 @@ If `conjure` reports an auth error, ask the user to run `conjure login`.
 - A question page that contains `> **Decided: …**` gets a "Decided" label; others get "Open question".
 - Relative image and PDF links are copied into the site, so keep images next to the PRD (question pages fall back to the PRD's folder).
 - YAML front matter is dropped.
+- Anything between `<!-- site:hide -->` and `<!-- /site:hide -->` is left off the site. Use it for notes aimed at other viewers of the Markdown, such as "this viewer doesn't show images, open the PDF".
+
+Before the first publish, and whenever you add mock-ups, read `references/polish.md`. It lists the display feedback earlier reviewers gave on these sites.
 
 ## Sub-pages for decisions
 
