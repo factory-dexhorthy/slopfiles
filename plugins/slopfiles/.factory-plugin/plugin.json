@@ -1,0 +1,10 @@
+{
+  "name": "slopfiles",
+  "description": "Dex's general-purpose skills: conjure-prd-mirror",
+  "version": "0.1.0",
+  "author": {
+    "name": "dex"
+  },
+  "license": "MIT",
+  "keywords": ["prd", "conjure", "review", "mockups"]
+}

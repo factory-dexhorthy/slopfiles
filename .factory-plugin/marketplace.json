@@ -1,0 +1,16 @@
+{
+  "name": "slopfiles",
+  "description": "Dex's personal Droid plugins",
+  "owner": {
+    "name": "dex"
+  },
+  "plugins": [
+    {
+      "name": "slopfiles",
+      "description": "General-purpose skills: conjure-prd-mirror",
+      "source": "./plugins/slopfiles",
+      "category": "productivity",
+      "tags": ["prd", "conjure", "review"]
+    }
+  ]
+}
