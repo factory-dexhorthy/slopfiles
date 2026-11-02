@@ -35,6 +35,27 @@ If `conjure` reports an auth error, ask the user to run `conjure login`.
 - Relative image and PDF links are copied into the site, so keep images next to the PRD (question pages fall back to the PRD's folder).
 - YAML front matter is dropped.
 
+## Sub-pages for decisions
+
+Keep the main doc about the chosen design. When a decision comes up mid-review, put the comparison on its own page instead of in the PRD:
+
+1. Write `<questions>/options-<topic>.md` with a `# Decision: <question>` title, one image per option, and your recommendation.
+2. In the PRD, show the image of the current pick, then its numbered notes, then a paragraph that is only a link:
+
+   ```markdown
+   ![Reviewer picker](prd-reviewer-picker.png)
+
+   1. Search by name.
+   2. Avatars show who is already asked.
+
+   [See the options we compared →](options-reviewer-picker.html)
+   ```
+
+   The builder puts that link as a button under the image, so readers can see which picture the decision belongs to.
+3. Once the user decides, add `> **Decided: <option>. <one-line reason>.**` near the top of the sub-page, update the PRD's image and notes to match, and redeploy. The page label changes from "Open question" to "Decided".
+
+Make a sub-page even for small calls, such as an icon or a default value. The record of what you compared then stays out of the PRD's prose but is still one click from the image it explains. Reviewers can comment on sub-pages too, and each page copies its own comments.
+
 ## Check before you share
 
 The live site usually sits behind SSO, so a headless browser can't load it. Check the built folder instead, which is the exact set of files you deployed (`$TMPDIR/conjure-prd-mirror/<slug>/`, or build to a folder of your own with `node scripts/site.mjs <prd.md> <out>`):
