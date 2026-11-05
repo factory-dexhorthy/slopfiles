@@ -11,6 +11,13 @@
       "source": "./plugins/slopfiles",
       "category": "productivity",
       "tags": ["prd", "conjure", "review"]
+    },
+    {
+      "name": "rpi",
+      "description": "Research a change, work through its design, and implement it with reviewable local documents. Forked from humanlayer/skills.",
+      "source": "./plugins/rpi",
+      "category": "productivity",
+      "tags": ["research", "design", "implementation"]
     }
   ]
 }
