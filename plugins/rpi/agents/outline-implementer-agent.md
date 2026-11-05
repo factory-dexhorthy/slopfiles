@@ -54,6 +54,38 @@ If you encounter a mismatch:
 
 Use the Edit tool to make these updates. This creates a persistent record of progress.
 
+## Testing Guidelines
+
+A reader should understand each test without scrolling up to decode a value.
+
+- **No unexplained literals.** Never put a bare number or raw string in a test without a name or key that says what it is. Give the value a name (`const lineOfQuoteAfterEditAbove = 5`) or put it in a keyed object.
+- **Test helpers take named fields**, never positional args: `startThread({ quote: '10% of orgs', docVersion: 2 })`, not `startThread('10% of orgs', 2)`.
+- **Names say what the data is.** Fixtures, variables, IDs and helpers get names like `planWithQuoteOnLine3`, `replyFromAgentSession`, `threadId`. Not `doc1`, `body`, `x`, `t_1`, or vague words like "private reply".
+- **Each test reads as given this setup, expect this outcome.** The test name states both. The body shows the setup and the expectation in place.
+- **Write expected values out**, or name them, next to the assertion. Never compute them with the code under test.
+- **Table-driven tests use keyed rows**, not positional tuples.
+- **Every test must be able to fail.** Name the production change that would turn it red. If none would, fix or delete the test.
+
+Before:
+
+```ts
+test('anchor', () => {
+  const t = startThread(doc1, '10% of orgs', 2)
+  edit(doc1, 0, 'New intro\n')
+  expect(anchorLine(t)).toBe(5)
+})
+```
+
+After:
+
+```ts
+test('given a line inserted above the quote, the thread anchor moves down one line', () => {
+  const thread = startThread({ doc: planWithQuoteOnLine4, quote: '10% of orgs', docVersion: 2 })
+  insertLine({ doc: planWithQuoteOnLine4, atLine: 1, text: 'New intro' })
+  const lineOfQuoteAfterEditAbove = 5
+  expect(anchorLine(thread)).toBe(lineOfQuoteAfterEditAbove)
+})
+```
 ## Verification Approach
 
 Without an outline, run the relevant automated checks from the repository and report their commands, results, and any checks that could not run.
