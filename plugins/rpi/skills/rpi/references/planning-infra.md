@@ -1,6 +1,6 @@
 # Planning Infrastructure
 
-Where the workflow documents live when several agents or machines work on one task, and how the user reads and comments on them in the browser.
+Where the workflow documents live when several agents or machines work on one task, and how the user reads and comments on them in the browser. For how to talk with the user, follow the Work With the User section in `SKILL.md`.
 
 ## Share the Documents
 
@@ -28,7 +28,6 @@ Publish the PRD, TDD, and slices as one static site, built from the shared docum
 
 - One agent owns deploys. It redeploys after the other agents finish their document changes, and batches changes into one deploy.
 - After each deploy, check that links resolve to real headings and images load, then report the site version.
-- Link straight to a slice or decision heading when pointing the user at it.
 - Agents work from the source documents, since the site may sit behind a sign-in meant for people.
 
 ### Ask Hard Decisions on Subpages

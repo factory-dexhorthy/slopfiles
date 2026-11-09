@@ -1,12 +1,6 @@
 # Ship in Slices
 
-How to turn an agreed design into small PRs and get them reviewed. A slice is one PR-sized piece of the change that works end to end. For where the workflow documents live and how the user reviews them, read `planning-infra.md`.
-
-## Working Style
-
-- Ask the user one question at a time, each with your recommendation.
-- Show options as pictures or as a diff of the plan.
-- Keep messages short and plain.
+How to turn an agreed design into small PRs and get them reviewed. A slice is one PR-sized piece of the change that works end to end. For where the workflow documents live and how the user reviews them, read `planning-infra.md`. For how to talk with the user, follow the Work With the User section in `SKILL.md`.
 
 ## Keep Changes Small
 
@@ -22,7 +16,6 @@ How to turn an agreed design into small PRs and get them reviewed. A slice is on
 - Before opening each PR, check its files against `CODEOWNERS` on the base branch.
 - Put any code-owned change in its own smallest PR, before or after the main change, so the owner reviews only that piece.
 - Prefer composing inside your own area over changing a shared library someone else owns.
-- Choose human reviewers with the user: someone who knows the area.
 
 ## Keep Two Live PRs
 
@@ -46,17 +39,3 @@ How to turn an agreed design into small PRs and get them reviewed. A slice is on
 | 5.6 | Show draft status in the list | Flag on, staff only | 5.5 |
 
 - Decisions live in the TDD. Slices link to them.
-
-## Refer to PRs as Slice (PR)
-
-Every message to the user that mentions a PR writes it as the slice number followed by the PR number in parentheses. Link the slice number to its heading on the review site and the PR number to the PR:
-
-```markdown
-[5.5](https://review.example.com/slices.html#slice-5-5) ([#1234](https://git.example.com/org/repo/pull/1234))
-```
-
-When the PR is still unopened, write "(no PR)" and link the slice number alone:
-
-```markdown
-[5.6](https://review.example.com/slices.html#slice-5-6) (no PR)
-```
