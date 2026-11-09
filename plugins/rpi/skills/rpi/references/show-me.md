@@ -120,7 +120,7 @@ function expandSkill(command: string): string {
 Bash(open path/to/show-me-{description}.html)
 ```
 
-### Render Visuals in the Terminal
+### Render Visuals in the Chat Stream
 
 Use `<json-render>` blocks in assistant messages when a visual materially helps understanding. In static sites, PR descriptions, shared documents, and other files, show the same content as a Markdown table, a Mermaid diagram, raw HTML, or an image.
 
