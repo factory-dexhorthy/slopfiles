@@ -36,6 +36,16 @@ Load the matching process from `$SKILLBASE/references/<step>/process.md`:
 
 Update an existing document by default; create one when needed or requested. When several match, use the newest and name the chosen file.
 
+## Work With the User
+
+- Ask the user one question at a time, each with your recommendation.
+- Show options as pictures or as a diff of the plan.
+- Keep messages short and plain.
+- Write every PR as slice (PR), linking the slice number to its heading on the review site and the PR number to the PR: `[5.5](https://review.example.com/slices.html#slice-5-5) ([#1234](https://git.example.com/org/repo/pull/1234))`, or `[5.6](https://review.example.com/slices.html#slice-5-6) (no PR)` before it opens.
+- Link straight to the slice or decision heading you mean.
+- Choose human reviewers with the user: someone who knows the area.
+- Bring the user a review request only once the PR is as green as it can be before review, written as `- <what it does> - +N / -N - <PR link> - @reviewers`, and show any message to another person before it's sent.
+
 ## Use the Task Directory
 
 Use the directory supplied by the user.
@@ -61,6 +71,14 @@ After writing or updating a workflow document, read `$SKILLBASE/references/prose
 Use the phase's handoff instructions and `$SKILLBASE/references/workflow.md` to choose what comes next. Users run each phase in a separate context window by default. When suggesting a next command, include the task directory and chosen flow. Say they can run it here, after compaction, or in a new session.
 
 Use artifact filenames to locate the current phase when asked what's next, then read its document for unfinished work and settled choices. Recognize `prd` or `product-requirements`, `tdd` or `tech-design`, and `structure-outline` or `outline`.
+
+## Ship in Slices
+
+Read `$SKILLBASE/references/shipping.md` when planning slices or PRs, opening or stacking PRs, or choosing reviewers.
+
+## Share and Review Documents
+
+Read `$SKILLBASE/references/planning-infra.md` when several agents share the workflow documents, or when publishing them as a review site or building its comment system.
 
 ## Use Subagents
 
