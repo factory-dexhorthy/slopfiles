@@ -122,35 +122,7 @@ Bash(open path/to/show-me-{description}.html)
 
 ### Render Visuals in the Terminal
 
-`<json-render>` blocks render in assistant messages in the chat, showing tables, timelines, charts, and status cards inline. Use one when the visual materially helps understanding.
-
-Use it only in assistant messages, the one place it renders. In static sites, PR descriptions, shared documents, and other files, show the same content as a Markdown table, a Mermaid diagram, raw HTML, or an image.
-
-The examples below sit in code fences so they display as syntax. In a reply, emit each one raw and unfenced, on a single line.
-
-Compare options with a recommendation:
-
-```text
-<json-render>{"root":"opts","elements":{"opts":{"type":"Box","props":{"flexDirection":"column","gap":1},"children":["opts-title","opts-table"]},"opts-title":{"type":"Heading","props":{"text":"Where to store drafts","level":"h2"},"children":[]},"opts-table":{"type":"Table","props":{"columns":[{"header":"Option","key":"option"},{"header":"Changed lines","key":"lines"},{"header":"Risk","key":"risk"}],"rows":[{"option":"A: extend the existing queue (recommended)","lines":"~250","risk":"Low"},{"option":"B: add a new scheduler","lines":"~900","risk":"High"}],"headerColor":"cyan"},"children":[]}}}</json-render>
-```
-
-Show slice and PR status:
-
-```text
-<json-render>{"root":"slices","elements":{"slices":{"type":"Timeline","props":{"items":[{"title":"5.4 Add the drafts table (#1233)","description":"Merged","status":"completed"},{"title":"5.5 Save drafts on the server (#1234)","description":"In review","status":"current"},{"title":"5.6 Show draft status in the list (no PR)","description":"Needs 5.5","status":"upcoming"}]},"children":[]}}}</json-render>
-```
-
-Compare sizes:
-
-```text
-<json-render>{"root":"size","elements":{"size":{"type":"Box","props":{"flexDirection":"column"},"children":["size-title","size-chart"]},"size-title":{"type":"Heading","props":{"text":"Changed lines per slice","level":"h3"},"children":[]},"size-chart":{"type":"BarChart","props":{"data":[{"label":"5.4","value":180},{"label":"5.5","value":340},{"label":"5.6","value":260,"color":"yellow"}],"showPercentage":false},"children":[]}}}</json-render>
-```
-
-Summarize one PR:
-
-```text
-<json-render>{"root":"pr","elements":{"pr":{"type":"Card","props":{"title":"5.5 (#1234) Save drafts on the server","padding":1},"children":["pr-size","pr-owners","pr-checks","pr-review"]},"pr-size":{"type":"KeyValue","props":{"label":"Changed lines","value":"340"},"children":[]},"pr-owners":{"type":"KeyValue","props":{"label":"Code-owned files","value":"0"},"children":[]},"pr-checks":{"type":"StatusLine","props":{"text":"All pre-approval checks pass","status":"success"},"children":[]},"pr-review":{"type":"StatusLine","props":{"text":"One automated review finding to resolve","status":"warning"},"children":[]}}}</json-render>
-```
+Use `<json-render>` blocks in assistant messages when a visual materially helps understanding. In static sites, PR descriptions, shared documents, and other files, show the same content as a Markdown table, a Mermaid diagram, raw HTML, or an image.
 
 ### guidance
 
