@@ -62,6 +62,14 @@ Use the phase's handoff instructions and `$SKILLBASE/references/workflow.md` to 
 
 Use artifact filenames to locate the current phase when asked what's next, then read its document for unfinished work and settled choices. Recognize `prd` or `product-requirements`, `tdd` or `tech-design`, and `structure-outline` or `outline`.
 
+## Ship in Slices
+
+Read `$SKILLBASE/references/shipping.md` when planning slices or PRs, opening or stacking PRs, choosing reviewers, or mentioning a PR to the user.
+
+## Share and Review Documents
+
+Read `$SKILLBASE/references/planning-infra.md` when several agents share the workflow documents, or when publishing them as a review site or building its comment system.
+
 ## Use Subagents
 
 Use the bundled agent instructions for `codebase-locator`, `codebase-analyzer`, `codebase-pattern-finder`, `web-search-researcher`, and `outline-implementer-agent` as directed by each phase.
