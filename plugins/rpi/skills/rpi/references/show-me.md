@@ -124,16 +124,7 @@ Bash(open path/to/show-me-{description}.html)
 
 `<json-render>` blocks render in assistant messages in the chat, showing tables, timelines, charts, and status cards inline. Use one when the visual materially helps understanding.
 
-Use it only in assistant messages, the one place it renders. In static sites, PR descriptions, shared documents, and other files, show the same content as a Markdown table, a Mermaid diagram, or an image.
-
-- Emit a single-line JSON object inside raw `<json-render>` tags, outside any code fence:
-  `{"root":"<id>","elements":{"<id>":{"type":"<Component>","props":{},"children":["<child-id>"]}}}`
-- Give every element `type`, `props`, and `children`. Children are element ids.
-- Match the props below exactly; an element renders only when its props are valid.
-  - Layout: `Box(flexDirection,padding,gap,borderStyle)`, `Text(text,color,bold)`, `Heading(text,level)`, `Divider(title)`, `Newline`, `Spacer`.
-  - Data: `BarChart(data:[{label,value,color?}],showPercentage)`, `Sparkline(data:number[],color)`, `Table(columns:[{header,key,width?}],rows:[{key:value}],headerColor)`, `List(items:string[],ordered)`.
-  - Display: `Card(title,padding)`, `StatusLine(text,status:success|error|warning|info)`, `KeyValue(label,value)`, `Badge(label,variant)`, `ProgressBar(progress:0-1,width,label)`, `Metric(label,value,trend:up|down)`, `Callout(type,title,content)`, `Timeline(items:[{title,description?,status?}])`.
-  - Fixed values: `Heading` `level` is `h1` to `h4`. `Badge` `variant` is `default|info|success|warning|error`. `Callout` `type` is `info|tip|warning|important`. `Timeline` item `status` is `completed|current|upcoming`.
+Use it only in assistant messages, the one place it renders. In static sites, PR descriptions, shared documents, and other files, show the same content as a Markdown table, a Mermaid diagram, raw HTML, or an image.
 
 The examples below sit in code fences so they display as syntax. In a reply, emit each one raw and unfenced, on a single line.
 
