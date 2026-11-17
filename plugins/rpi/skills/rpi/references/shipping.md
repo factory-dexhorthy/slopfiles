@@ -25,3 +25,12 @@ How to turn an agreed design into small PRs and get them reviewed. A slice is on
 ## Name Slices
 
 - Name each slice by what it does.
+
+## Track Slices in the Issue Tracker
+
+- Track the slice plan as an issue tree in the team's tracker, such as Linear.
+- Keep one parent issue for the slice plan, filed under the task's epic or parent issue, and one child issue per slice, titled with the slice number and name.
+- Mirror the plan's dependencies as "blocked by" relations.
+- Each PR names its slice issue (for example "Closes ABC-123"), so merging closes it.
+- Keep each issue's state in step with its PR: no PR, draft, in review, merged.
+- Update the tree when a slice is split, merged, or dropped.
