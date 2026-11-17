@@ -14,14 +14,22 @@ How to turn an agreed design into small PRs and get them reviewed. A slice is on
 - Before opening each PR, check its files against `CODEOWNERS` on the base branch.
 - Put any code-owned change in its own smallest PR, before or after the main change, so the owner reviews only that piece.
 
-## Keep Two Live PRs
+## Keep N Live PRs
 
-- Have at most two PRs ready for review at once across all agents on the task.
+The user will tell you how many ready slots to keep. Default to 2.
+
+- Have at most N PRs ready for review at once across all agents on the task.
 - A PR that depends on another stays a draft until its parent merges.
 - Merge the base branch into a PR branch only when the parent merged, when there is a conflict, or right before merging. Batch pushes.
 - Update shared branches with `git merge --no-ff`, keeping their pushed history.
 - Prefer a few independent PRs over a long stack, and mark what each PR truly depends on.
 - Before asking anyone for review, get the PR as green as it can be: every pre-approval check passing, automated review findings resolved, and PR description checks passing.
+- When the user asks which prs need review, format as a short markdown-compatible list in a ```text block:
+
+```text
+- [slice number] SHORT_DESCRIPTION - +N / -M - [#....](...link...)
+- ...
+```
 
 ## Name Slices
 
