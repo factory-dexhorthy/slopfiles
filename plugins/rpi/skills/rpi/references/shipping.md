@@ -7,6 +7,7 @@ How to turn an agreed design into small PRs and get them reviewed. A slice is on
 - Design each PR so an automated risk reviewer can approve it alone: small, well tested, and away from startup and hot paths.
 - When a phase comes out too big, split it into numbered sub-PRs: 4.2.1, 4.2.2.
 - Each PR carries its own tests for what it adds, so tests land with their code.
+- PR titles should include the slice number, if applicable, e.g. feat(cli): 4.2.1: ...
 
 ## Navigate Code Owners
 
@@ -30,17 +31,17 @@ How to turn an agreed design into small PRs and get them reviewed. A slice is on
 
 - Track the slice plan as an issue tree in the team's tracker, such as Linear.
 - Put everything under one parent issue for the slice plan. Before shipping starts, ask the user for that issue's number, or offer to create one: propose a title and the project (and parent epic, if any) to file it in, and wait for their answer.
-- Follow the slice numbering level by level, titling each issue with its number and name: one issue per phase under the parent ("Slice 1", "Slice 2"), one child per slice under its phase (1.1, 1.2), and one child per PR under a slice that ships as several PRs (1.3.1, 1.3.2).
+- Follow the slice numbering level by level, titling each issue with its number and name: one issue per phase under the parent ("Slice 1", "Slice 2"), one child per slice under its phase (1.1, 1.2), and one child per PR under a slice that ships as several PRs (1.3.1, 1.3.2), with short few-word title
 
   ```text
-  Slice plan
-  ├── Slice 1
-  │   ├── 1.1
-  │   ├── 1.2
-  │   └── 1.3
-  │       ├── 1.3.1
-  │       └── 1.3.2
-  └── Slice 2
+  Feature
+  ├── Slice 1: ...
+  │   ├── 1.1: ...
+  │   ├── 1.2: ...
+  │   └── 1.3: ...
+  │       ├── 1.3.1: ...
+  │       └── 1.3.2: ...
+  └── Slice 2: ...
   ```
 
 - Mirror the plan's dependencies as "blocked by" relations.
