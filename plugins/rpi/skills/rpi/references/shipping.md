@@ -24,8 +24,8 @@ The user will tell you how many ready slots to keep. Default to 2.
 - Update shared branches with `git merge --no-ff`, keeping their pushed history.
 - Prefer a few independent PRs over a long stack, and mark what each PR truly depends on.
 - Before asking anyone for review, get the PR as green as it can be: every pre-approval check passing, automated review findings resolved, and PR description checks passing.
-- if a review bot finds a p0 or p1 finding, fix it. for p2 findings, suggest to the user whether to address+resolve, defer to a later cleanup slice in tdd+tracker (comment w/ link or number + resolve), or comment+drop+resolve
-- When the user asks which prs need review, format as a short markdown-compatible list in a ```text block:
+- If a review bot finds a P0 or P1 finding, fix it. For P2 findings, suggest to the user whether to address+resolve, defer to a later cleanup slice in TDD+tracker (comment with link or number + resolve), or comment+drop+resolve
+- When the user asks which PRs need review, format as a short markdown-compatible list in a ```text block:
 
 ```text
 - [slice number] SHORT_DESCRIPTION - +N / -M - [#....](...link...)
@@ -35,9 +35,8 @@ The user will tell you how many ready slots to keep. Default to 2.
 ## PR Format
 
 - PRs should follow references/prose.md and references/show-me.md closely - tight and concise, while following repo conventions
-- Include links on the first line `[TICKETID](link to ticket) | [PRD](...) | ...so on for tdd, slices, etc if linkable`
+- Include links on the first line `[TICKETID](link to ticket) | [PRD](...) | ...so on for TDD, slices, etc if linkable`
 - For PRs that are part of a large slice plan, include the slices outline near the top, with this slice in bold.
--
 - Unfurl this slice's siblings, root parent and all the root parent's children - do not unfurl every grandchild of the slice
 
 ```
@@ -46,7 +45,7 @@ The user will tell you how many ready slots to keep. Default to 2.
 * Slice 3: ...
     * 3.1: ...
         * 3.1.1: ...
-        * **3.1.2: this pr, ...other description**
+        * **3.1.2: this PR, ...other description**
         * 3.1.3: ...
     * 3.2: ...
     * 3.3: ...
