@@ -24,7 +24,8 @@ The user will tell you how many ready slots to keep. Default to 2.
 - Update shared branches with `git merge --no-ff`, keeping their pushed history.
 - Prefer a few independent PRs over a long stack, and mark what each PR truly depends on.
 - Before asking anyone for review, get the PR as green as it can be: every pre-approval check passing, automated review findings resolved, and PR description checks passing.
-- When the user asks which prs need review, format as a short markdown-compatible list in a ```text block:
+- If a review bot finds a P0 or P1 finding, fix it. For P2 findings, suggest to the user whether to address+resolve, defer to a later cleanup slice in TDD+tracker (comment with link or number + resolve), or comment+drop+resolve
+- When the user asks which PRs need review, format as a short markdown-compatible list in a ```text block:
 
 ```text
 - [slice number] SHORT_DESCRIPTION - +N / -M - [#....](...link...)
