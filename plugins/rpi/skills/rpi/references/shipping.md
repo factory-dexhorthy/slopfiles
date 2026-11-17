@@ -7,20 +7,29 @@ How to turn an agreed design into small PRs and get them reviewed. A slice is on
 - Design each PR so an automated risk reviewer can approve it alone: small, well tested, and away from startup and hot paths.
 - When a phase comes out too big, split it into numbered sub-PRs: 4.2.1, 4.2.2.
 - Each PR carries its own tests for what it adds, so tests land with their code.
+- PR titles should include the slice number, if applicable, e.g. feat(cli): 4.2.1: ...
 
 ## Navigate Code Owners
 
 - Before opening each PR, check its files against `CODEOWNERS` on the base branch.
 - Put any code-owned change in its own smallest PR, before or after the main change, so the owner reviews only that piece.
 
-## Keep Two Live PRs
+## Keep N Live PRs
 
-- Have at most two PRs ready for review at once across all agents on the task.
+The user will tell you how many ready slots to keep. Default to 2.
+
+- Have at most N PRs ready for review at once across all agents on the task.
 - A PR that depends on another stays a draft until its parent merges.
 - Merge the base branch into a PR branch only when the parent merged, when there is a conflict, or right before merging. Batch pushes.
 - Update shared branches with `git merge --no-ff`, keeping their pushed history.
 - Prefer a few independent PRs over a long stack, and mark what each PR truly depends on.
 - Before asking anyone for review, get the PR as green as it can be: every pre-approval check passing, automated review findings resolved, and PR description checks passing.
+- When the user asks which prs need review, format as a short markdown-compatible list in a ```text block:
+
+```text
+- [slice number] SHORT_DESCRIPTION - +N / -M - [#....](...link...)
+- ...
+```
 
 ## Name Slices
 
@@ -30,8 +39,19 @@ How to turn an agreed design into small PRs and get them reviewed. A slice is on
 
 - Track the slice plan as an issue tree in the team's tracker, such as Linear.
 - Put everything under one parent issue for the slice plan. Before shipping starts, ask the user for that issue's number, or offer to create one: propose a title and the project (and parent epic, if any) to file it in, and wait for their answer.
-- Give each slice one child issue, titled with the slice number and name.
-- When a slice ships as several PRs, such as 4.2.1 and 4.2.2, give each PR its own child issue under the slice issue.
+- Follow the slice numbering level by level, titling each issue with its number and name: one issue per phase under the parent ("Slice 1", "Slice 2"), one child per slice under its phase (1.1, 1.2), and one child per PR under a slice that ships as several PRs (1.3.1, 1.3.2), with short few-word title
+
+  ```text
+  Feature
+  ├── Slice 1: ...
+  │   ├── 1.1: ...
+  │   ├── 1.2: ...
+  │   └── 1.3: ...
+  │       ├── 1.3.1: ...
+  │       └── 1.3.2: ...
+  └── Slice 2: ...
+  ```
+
 - Mirror the plan's dependencies as "blocked by" relations.
 - Each PR names the issue it closes (for example "Closes ABC-123"), so merging closes it.
 - Keep each issue's state in step with its PR: no PR, draft, in review, merged.
