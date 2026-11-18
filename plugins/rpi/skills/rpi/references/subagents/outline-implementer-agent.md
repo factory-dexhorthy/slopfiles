@@ -1,7 +1,7 @@
 ---
 name: outline-implementer-agent
 description: "Implements structure outlines from the selected task directory, or directly from available workflow documents. Follows phased implementation with progress tracking in the outline document itself."
-tools: Read, Edit, Write, Grep, Glob, Bash, TodoWrite, Skill
+tools: Read, Edit, Create, Grep, Glob, Execute, TodoWrite, Skill
 model: inherit
 ---
 
