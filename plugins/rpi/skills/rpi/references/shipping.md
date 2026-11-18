@@ -81,7 +81,7 @@ The user will tell you how many ready slots to keep. Default to 2.
 
 ## Shipping with agents 
 
-- If you are an orchestrator over SpawnAgents, use roughly one agent per PR, and ensure it reads all RPI docs before starting work (`/rpi implement-outline` should do this already).
+- If you are an orchestrator over SpawnAgents, use roughly one agent per PR, and ensure it reads all RPI docs before starting work (you should be launching them with instructions akin to ~`/rpi implement-outline` which should steer them to review all RPI docs already).
 - It is acceptable to have multiple PRs from a single agent roughly only if an agent makes one PR and then later decides to break that PR up (other such exceptions may arise, use your judgement, but lean mildly toward new agent if unsure)
 
 
