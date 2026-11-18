@@ -7,13 +7,32 @@ repos:
 
 # <Technical Design Title>
 
+<Write each choice in both sections as described in `$SKILLBASE/references/decisions.md`. Number them in one sequence: system design first, then program design.>
+
 ## System Design
 
-<Build through the first interview. Explain cross-component behavior and how it changes from today's system. Use takeaway headers and place diagrams, contracts, message shapes, and schemas beside the explanation.>
+<Draft first. Explain cross-component behavior and how it changes from today's system. Place diagrams, contracts, message shapes, and schemas beside the explanation.>
+
+### D1. <What the system will do, stated as the result>
+
+<What we'll do and why, with the diagram or contract that makes it clear.>
+
+<details>
+<summary>Alternatives and motivation (<N>)</summary>
+
+#### <Alternative>
+
+<The same detail and the same kind of view as D1, and why we chose D1 instead.>
+
+</details>
 
 ## Program Design
 
-<Build after system design approval. Show the in-code shape with call trees, component trees, file-tree changes, dependency-injection maps, signatures, and pseudocode. Keep the views selective and focused on decisions.>
+<Draft after system design approval. Show the in-code shape with call trees, component trees, file-tree changes, dependency-injection maps, signatures, and pseudocode. Keep the views selective.>
+
+### D<N>. <What the code will look like, stated as the result>
+
+<What we'll do and why, with the code view that makes it clear. Show each alternative as its own code block.>
 
 ## Patterns to Follow
 

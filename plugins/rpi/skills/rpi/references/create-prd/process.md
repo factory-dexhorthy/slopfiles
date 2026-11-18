@@ -2,7 +2,7 @@
 
 Work with the user to define what they want to build and why: the problem, success measure, user experience, functionality, and behavior. Keep implementation questions for the TDD.
 
-Follow these steps in order, running the interview in the main conversation.
+Follow these steps in order, working with the user in the main conversation.
 
 ## 1. Read the Available Context
 
@@ -14,11 +14,11 @@ For UI work, use the research's design-system findings. Investigate components, 
 
 ## 2. Read the Templates and Write a Small Starting Document
 
-Read `$SKILLBASE/references/create-prd/references/prd_template.md` and `$SKILLBASE/references/show-me.md`.
+Read `$SKILLBASE/references/create-prd/references/prd_template.md`, `$SKILLBASE/references/decisions.md`, and `$SKILLBASE/references/show-me.md`.
 
-Write `NN-prd-<description>.md` using the next available number. Start with frontmatter, the title, a first-draft **Problem to Solve**, and empty **Success**, **Proposed Solution**, and **Solution Details** sections. Fill `repos` with the relevant identifiers and SHAs, or use `repos: []`.
+Write `NN-prd-<description>.md` using the next available number. Start with frontmatter, the title, a first-draft **Problem to Solve**, and empty **Success**, **Solution**, and **Solution Details** sections. Fill `repos` with the relevant identifiers and SHAs, or use `repos: []`.
 
-Quote the drafted problem statement and ask the user one question to confirm or correct it. Keep this opening short so the interview starts promptly.
+Quote the drafted problem statement and ask the user one question to confirm or correct it. Keep this opening short so the work starts promptly.
 
 ## 3. Settle the Problem and Success Measure
 
@@ -26,13 +26,13 @@ First agree on the problem. Rework its section once the user settles the wording
 
 Then discuss how to tell whether the change helps users after it ships. Propose a measure suited to the work: adoption, a benchmark, errors, latency, or a qualitative result. For small work with no useful measure, record that choice with the user's agreement.
 
-Ask one question per message and wait for the answer. Once the problem and success measure are settled, open the solution interview.
+Ask one question per message and wait for the answer. Once the problem and success measure are settled, draft the solution.
 
-## 4. Interview the User About the Solution
+## 4. Draft the Solution and Revise It From Feedback
 
-Present one product decision at a time with two or three options, tradeoffs, and a recommendation. Give the user time to answer and clarify the choice. Update the document once the decision is settled.
+Write every product decision under **Solution Details**, following `decisions.md`, then sum them up in **Solution**. Use short paragraphs and headers that state the result, such as "D1. Reviewers comment without signing in."
 
-Rework the affected sections into a coherent spec: update **Solution Details**, refine **Proposed Solution**, and record alternatives and scope when they change. Use short paragraphs and section headers that state the result, such as "Reviewers comment without signing in."
+Ask the user to read **Solution Details** from the top and give feedback on any decision. Apply each piece of feedback as `decisions.md` describes, and rework **Solution** and **Scope** to match. Keep revising until the document says what the user wants.
 
 For UI choices, save focused `mockup-<description>.html` files in the task directory. Match the user's product, use realistic labels, and link each mockup beside its explanation in the document and conversation. Update mockups as decisions change.
 

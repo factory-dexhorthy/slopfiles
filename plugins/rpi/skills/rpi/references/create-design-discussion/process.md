@@ -16,9 +16,9 @@ When a choice depends on facts that the research has not established, use `codeb
 
 ## 3. Read the Templates and Visual Guidance
 
-Read `$SKILLBASE/references/create-design-discussion/references/design_discussion_template.md` and `$SKILLBASE/references/show-me.md`.
+Read `$SKILLBASE/references/create-design-discussion/references/design_discussion_template.md`, `$SKILLBASE/references/decisions.md`, and `$SKILLBASE/references/show-me.md`.
 
-Use focused before-and-after diagrams, trees, contracts, or pseudocode to explain the current system, proposed result, and choices. Place each view beside the short explanation it supports.
+Use focused before-and-after diagrams, trees, contracts, or pseudocode to explain the current system, the end state, and each decision. Place each view beside the short explanation it supports.
 
 Use `diff` blocks when the main point is what changes. Show the complete target shape when it makes ownership or order clearer.
 
@@ -26,19 +26,19 @@ Use `diff` blocks when the main point is what changes. Show the complete target 
 
 Write `NN-design-discussion-<description>.md` in the task directory using the next available number. Fill its `repos` entries with the relevant repository identifiers and SHAs, or use `repos: []`.
 
-Describe the current experience, desired result, scope, proposed architecture, and existing patterns to follow. Include file locations and short examples of those patterns, along with the existing testing approach.
+Describe the current experience, desired result, scope, end state architecture, and existing patterns to follow. Include file locations and short examples of those patterns, along with the existing testing approach.
 
 Describe the current and desired experience in terms of what users see and can do. Use the architecture and patterns sections for code structure, source references, and implementation examples.
 
-Put choices awaiting the user's decision under **Design Questions**, each with options, tradeoffs, and a recommendation grounded in the codebase. Carry choices already settled by the user into **Resolved Design Questions**; otherwise begin that section empty.
+Write every design choice under **Design**, following `decisions.md`. Ground each decision and its alternatives in the codebase. Write choices the user already settled the same way.
 
-Use section headers that state the main point so the reader can understand the proposed change by skimming them.
+Use section headers that state the main point so the reader can understand the change by skimming them.
 
-## 5. Work Through the Decisions
+## 5. Revise Until the Document Says What the User Wants
 
-Run the interview in the main conversation. Present one decision at a time with its options and recommendation, then wait for the user's answer. Respond to clarifying questions until the choice is settled.
+In the main conversation, ask the user to read **Design** from the top and give feedback on any decision. Answer clarifying questions there.
 
-Once the user gives a clear decision, update the affected sections in place and move the choice to **Resolved Design Questions**. Record the chosen approach, rationale, and why the alternatives were set aside. Keep the prose and diagrams in step with the decision. Then present the next open choice.
+Apply each piece of feedback as `decisions.md` describes: change the decision it targets and any later ones that depend on it, and treat earlier ones as approved. Rework the other sections in place to match. Then name the first decision the user hasn't reviewed.
 
 For visual choices, save a focused HTML mockup or diagram beside the document and provide an ordinary local link. Match the project's visual conventions and use real labels.
 
@@ -46,8 +46,8 @@ For visual choices, save a focused HTML mockup or diagram beside the document an
 
 Offer to open the document for review in VS Code, Cursor, or the user's preferred editor or browser.
 
-While choices remain open, read `$SKILLBASE/references/create-design-discussion/references/design_discussion_final_answer.md` and fill it with the document path and next question.
+While the user is still reviewing, read `$SKILLBASE/references/create-design-discussion/references/design_discussion_final_answer.md` and fill it with the document path and the first decision the user hasn't reviewed.
 
-When the user has settled every design choice, read `$SKILLBASE/references/create-design-discussion/references/design_discussion_final_answer_resolved.md`. Use `$SKILLBASE/references/workflow.md` for the next command. Offer an outline or direct implementation.
+When the user approves the whole design, read `$SKILLBASE/references/create-design-discussion/references/design_discussion_final_answer_resolved.md`. Use `$SKILLBASE/references/workflow.md` for the next command. Offer an outline or direct implementation.
 
-For a requested early handoff, save agreed decisions and remaining open choices, then follow the requested step.
+For a requested early handoff, save the document, name the decisions the user hasn't reviewed, then follow the requested step.

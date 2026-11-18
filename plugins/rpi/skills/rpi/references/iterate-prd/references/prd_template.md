@@ -15,17 +15,26 @@ repos:
 
 <Leave empty initially. Record the agreed way to tell whether the change helps users.>
 
-## Proposed Solution
+## Solution
 
-<Leave empty initially. Build the high-level solution as choices are settled.>
+<Leave empty initially. Sum up the solution in a few sentences once the details below are drafted.>
 
 ## Solution Details
 
-<Build through the interview with headers that state the result of each feature or behavior. Place linked mockups and diagrams beside their explanations.>
+<Product decisions from the most fundamental to the least, written as described in `$SKILLBASE/references/decisions.md`. Place linked mockups and diagrams beside their explanations.>
 
-## Alternative Solutions Considered
+### D1. <What users will see or be able to do>
 
-<Add when choices are settled, with reasons for choosing another approach.>
+<The behavior and why, with the smallest view or mockup that makes it clear.>
+
+<details>
+<summary>Alternatives and motivation (<N>)</summary>
+
+#### <Alternative>
+
+<The same detail and the same kind of view as D1, and why we chose D1 instead.>
+
+</details>
 
 ## Scope
 

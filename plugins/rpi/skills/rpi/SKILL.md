@@ -64,7 +64,7 @@ Workflow document frontmatter includes `repos`, a list of zero or more repositor
 
 ## Review the Document
 
-After writing or updating a workflow document, read `$SKILLBASE/references/prose.md` and `$SKILLBASE/references/show-me.md`, then review the document against both. Make it shorter, more visual, and easier for a person to digest: cut words and sections that do not earn their place, replace dense prose with the smallest view that makes the point, and keep each visual beside the short text it supports.
+After writing or updating a workflow document, read `$SKILLBASE/references/prose.md` and `$SKILLBASE/references/show-me.md`, then review the document against both. For a design discussion, PRD, or TDD, also check its decisions against `$SKILLBASE/references/decisions.md`. Make it shorter, more visual, and easier for a person to digest: cut words and sections that do not earn their place, replace dense prose with the smallest view that makes the point, and keep each visual beside the short text it supports.
 
 ## Suggest the Next Step
 
