@@ -26,6 +26,8 @@ Apply the feedback as `decisions.md` describes: change the decision it targets a
 
 Update the existing file in place. Rework the current state, desired state, patterns, and scope as the decisions require, until the document says what the user wants.
 
+Keep product decisions before technical ones. When a product decision changes, update its mockup or workflow and check the technical decisions after it.
+
 Use headers that state the section's main point. Update diagrams and any linked HTML mockups beside the prose they support. Preserve document metadata and update the `repos` list when the researched repositories change.
 
 ## 6. Continue the Review or Hand Off

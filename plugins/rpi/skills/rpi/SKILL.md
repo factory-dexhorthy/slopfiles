@@ -44,6 +44,7 @@ Update an existing document by default; create one when needed or requested. Whe
 - Write every PR as slice (PR), linking the slice number to its heading on the review site and the PR number to the PR: `[5.5](https://review.example.com/slices.html#slice-5-5) ([#1234](https://git.example.com/org/repo/pull/1234))`, or `[5.6](https://review.example.com/slices.html#slice-5-6) (no PR)` before it opens.
 - Link straight to the slice or decision heading you mean.
 - Choose human reviewers with the user: someone who knows the area.
+- For a tool that needs a CLI login, run it in a tmux session and share the login URL before you ask the user to approve.
 - Bring the user a review request only once the PR is as green as it can be before review, written as `- <what it does> - +N / -N - <PR link> - @reviewers`, and show any message to another person before it's sent.
 
 ## Use the Task Directory
