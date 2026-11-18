@@ -23,13 +23,9 @@ repos:
 
 <Included work and agreed boundaries.>
 
-## End State Architecture
-
-<Explain how the pieces fit together once the design below is built, with focused before-and-after views.>
-
 ## Design
 
-<Decisions from the most fundamental to the least, written as described in `$SKILLBASE/references/decisions.md`.>
+<How the pieces fit together once this is built, as decisions from the most fundamental to the least, written as described in `$SKILLBASE/references/decisions.md`. D1 sets the overall shape, with a focused before-and-after view.>
 
 ### D1. <What we'll do, stated as the result>
 

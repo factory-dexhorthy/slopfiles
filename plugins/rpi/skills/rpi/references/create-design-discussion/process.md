@@ -26,9 +26,9 @@ Use `diff` blocks when the main point is what changes. Show the complete target 
 
 Write `NN-design-discussion-<description>.md` in the task directory using the next available number. Fill its `repos` entries with the relevant repository identifiers and SHAs, or use `repos: []`.
 
-Describe the current experience, desired result, scope, end state architecture, and existing patterns to follow. Include file locations and short examples of those patterns, along with the existing testing approach.
+Describe the current experience, desired result, scope, design, and existing patterns to follow. Include file locations and short examples of those patterns, along with the existing testing approach.
 
-Describe the current and desired experience in terms of what users see and can do. Use the architecture and patterns sections for code structure, source references, and implementation examples.
+Describe the current and desired experience in terms of what users see and can do. Use the design and patterns sections for code structure, source references, and implementation examples.
 
 Write every design choice under **Design**, following `decisions.md`. Ground each decision and its alternatives in the codebase. Write choices the user already settled the same way.
 

@@ -24,7 +24,7 @@ Read `$SKILLBASE/references/iterate-design-discussion/references/design_discussi
 
 Apply the feedback as `decisions.md` describes: change the decision it targets and any later ones that depend on it, and treat earlier ones as approved. When the feedback is unclear, ask before editing and keep the exchange in the conversation.
 
-Update the existing file in place. Rework the current state, desired state, architecture, patterns, and scope as the decisions require, until the document says what the user wants.
+Update the existing file in place. Rework the current state, desired state, patterns, and scope as the decisions require, until the document says what the user wants.
 
 Use headers that state the section's main point. Update diagrams and any linked HTML mockups beside the prose they support. Preserve document metadata and update the `repos` list when the researched repositories change.
 
