@@ -19,7 +19,7 @@ Show each comment in this order, briefly:
 3. Today's code: a few lines of pseudocode with an arrow at the bad line. Name the file and line.
 4. The fix as a diff of that same pseudocode, plus its size, such as "about 5 lines plus a test".
 5. Whether this PR caused it (verified or unverified), and how likely it is to happen.
-6. Your recommendation: fix it in this PR, or reply and file a follow-up in the team's tracker. Then ask one question: fix it or skip it?
+6. Your recommendation: fix it in this PR, defer it (reply, file a follow-up in the team's tracker, and resolve), or drop it (resolve with no fix and no follow-up). Then ask one question: fix, defer, or drop?
 
 Keep it short. No preamble, no recap of earlier issues, no extra options.
 
@@ -35,6 +35,6 @@ Tell the owning agent to:
 - Make each fix as a new commit. Never rebase, force-push, or rewrite someone else's commits.
 - Add a test for each bug fix, and confirm it fails before the fix and passes after.
 - Run lint, typecheck, unit tests, and the e2e spec locally, then push everything in one push.
-- Reply on each thread with the commit that fixes it, or for a skipped comment, why it's skipped and the follow-up issue link. Then resolve the thread.
+- Reply on each fixed thread with the commit that fixes it, and on each deferred thread with why it's deferred and the follow-up issue link. Resolve every thread, including dropped ones, which get no fix and no follow-up.
 - Update the PR description and screenshots if anything visible changed.
 - Leave auto-merge off and report back with the new head SHA and the check results. Run a risk check on just the new changes before auto-merge goes back on.
