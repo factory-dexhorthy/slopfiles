@@ -174,8 +174,6 @@
   };
 
   clearBtn.onclick = () => {
-    const n = comments.length;
-    if (!n || !confirm(`Clear ${n} comment${n === 1 ? '' : 's'} on this page?`)) return;
     comments = [];
     save(); closeBox(); render();
   };
