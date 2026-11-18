@@ -78,7 +78,11 @@ Read `$SKILLBASE/references/shipping.md` when planning slices or PRs, opening or
 
 ## Share and Review Documents
 
-Read `$SKILLBASE/references/planning-infra.md` when several agents share the workflow documents, or when publishing them as a review site or building its comment system.
+Read `$SKILLBASE/references/planning-infra.md` when several agents share the workflow documents.
+
+Before you publish any workflow document as a web page (a static site, a hosted page, or an HTML export), read `$SKILLBASE/references/planning-infra.md`. Every published page includes `$SKILLBASE/assets/review-comments.js`.
+
+A published page isn't done until clicking a block opens a comment box and Copy produces a `<page-review>` block.
 
 ## Use Subagents
 
