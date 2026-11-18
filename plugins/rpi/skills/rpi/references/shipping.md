@@ -116,3 +116,5 @@ Findings. P0 and P1 get fixed. P2 or lower, and edge cases, go to you before any
 
 If a PR ends with comments / feedback from a review bot, follow review-comments.md to work through them with the user.
 
+Do not blindly accept p2 findings, and since we split work over many small PRs, be ESPECIALLY skeptical of "function has no production caller" findings.
+
