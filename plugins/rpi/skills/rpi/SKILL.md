@@ -64,7 +64,7 @@ Workflow document frontmatter includes `repos`, a list of zero or more repositor
 
 ## Review the Document
 
-After writing or updating a workflow document, read `$SKILLBASE/references/prose.md` and `$SKILLBASE/references/show-me.md`, then review the document against both. Make it shorter, more visual, and easier for a person to digest: cut words and sections that do not earn their place, replace dense prose with the smallest view that makes the point, and keep each visual beside the short text it supports.
+After writing or updating a workflow document, read `$SKILLBASE/references/prose.md` and `$SKILLBASE/references/show-me.md`, then review the document against both. For a design discussion, PRD, or TDD, also check its decisions against `$SKILLBASE/references/decisions.md`. Make it shorter, more visual, and easier for a person to digest: cut words and sections that do not earn their place, replace dense prose with the smallest view that makes the point, and keep each visual beside the short text it supports.
 
 ## Suggest the Next Step
 
@@ -78,7 +78,11 @@ Read `$SKILLBASE/references/shipping.md` when planning slices or PRs, opening or
 
 ## Share and Review Documents
 
-Read `$SKILLBASE/references/planning-infra.md` when several agents share the workflow documents, or when publishing them as a review site or building its comment system.
+Read `$SKILLBASE/references/planning-infra.md` when several agents share the workflow documents.
+
+Before you publish any workflow document as a web page (a static site, a hosted page, or an HTML export), read `$SKILLBASE/references/planning-infra.md`. Every published page includes `$SKILLBASE/assets/review-comments.js`.
+
+A published page isn't done until clicking a block opens a comment box and Copy produces a `<page-review>` block.
 
 ## Use Subagents
 

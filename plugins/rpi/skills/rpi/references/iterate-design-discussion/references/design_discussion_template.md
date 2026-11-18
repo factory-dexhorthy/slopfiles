@@ -23,19 +23,22 @@ repos:
 
 <Included work and agreed boundaries.>
 
-## Proposed End State Architecture
+## Design
 
-<Explain how the pieces fit together, with focused before-and-after views. Distinguish proposed choices from settled decisions.>
+<How the pieces fit together once this is built, as decisions from the most fundamental to the least, written as described in `$SKILLBASE/references/decisions.md`. D1 sets the overall shape, with a focused before-and-after view.>
 
-## Design Questions
+### D1. <What we'll do, stated as the result>
 
-### <The Choice the User Needs to Make>
+<What we'll do and why, with the smallest view that makes it clear.>
 
-<Question, options, tradeoffs, and recommendation.>
+<details>
+<summary>Alternatives and motivation (<N>)</summary>
 
-## Resolved Design Questions
+#### <Alternative>
 
-<After the user's decision: chosen approach, rationale, and alternatives considered. Start this section empty.>
+<The same detail and the same kind of view as D1, and why we chose D1 instead.>
+
+</details>
 
 ## Patterns to Follow
 

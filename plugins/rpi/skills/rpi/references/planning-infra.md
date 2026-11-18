@@ -14,11 +14,10 @@ Publish the PRD, TDD, and slices as one static site, built from the shared docum
 
 Make a subpage for a decision that is awkward to ask in chat. Show the options side by side with pictures and your recommendation, then ask the user in chat with a link to the subpage.
 
-## Build the Comment System
+## Add the Comment System
 
-Give the review site a client-only comment layer.
+Inline `$SKILLBASE/assets/review-comments.js` into every published page, in a `<script>` at the end of `<body>`. Use it as is; don't rebuild it.
 
-- Store comments in `localStorage`, one key per page.
 - Clicking any block opens a box to comment on it.
 - "Copy N comments" puts every comment on the clipboard as one block for the user to paste into the agent chat.
 - The agent addresses each comment, then the user clicks Clear.
