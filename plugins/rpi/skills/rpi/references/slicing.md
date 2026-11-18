@@ -1,9 +1,9 @@
 # Slice the Work
 
-How to divide an agreed design into slices. The outline holds the slice plan, and `shipping.md` gets each slice merged:
+How to divide the work into slices, from an agreed design or straight from a request. The outline holds the slice plan when there is one, and `shipping.md` gets each slice merged:
 
 ```text
-design    what should change, and why       PRD / TDD decisions
+design    what should change, and why       the request, or PRD / TDD decisions
 outline   in what order we make it real     slices, each making tangible progress (this file)
 shipping  how each slice gets merged        PR size, stacking, review, tracking (shipping.md)
 ```
@@ -20,7 +20,7 @@ Start from the outside: the thing the user will see or judge. Fake whatever sits
 
 ## Start With a Walking Skeleton
 
-Slice 1 is the thinnest change that exercises the PRD's success measure end to end, even if it's crude. Each later slice adds one case or behavior, plus whatever it needs underneath.
+Slice 1 is the thinnest change that shows the result end to end, even if it's crude. Use the PRD's success measure when there is one, or what the request asked for when there isn't. Each later slice adds one case or behavior, plus whatever it needs underneath.
 
 Look for the smallest thing the user can ask for and watch happen. It often needs far less than the design implies.
 

@@ -1,6 +1,6 @@
 # Ship in Slices
 
-How to get each slice of the outline merged and reviewed. Plan the slices with `slicing.md` first: every slice makes tangible progress, on the fewest lines and PRs to the next thing the user can test or demo. For where the workflow documents live and how the user reviews them, read `planning-infra.md`. For how to talk with the user, follow the Work With the User section in `SKILL.md`.
+How to get each slice merged and reviewed. Plan the slices with `slicing.md` first: every slice makes tangible progress, on the fewest lines and PRs to the next thing the user can test or demo. For where the workflow documents live and how the user reviews them, read `planning-infra.md`. For how to talk with the user, follow the Work With the User section in `SKILL.md`.
 
 ## Keep Changes Small
 
