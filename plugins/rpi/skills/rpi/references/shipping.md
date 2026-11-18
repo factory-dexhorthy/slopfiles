@@ -97,17 +97,20 @@ When an agent reports finished work or. a draft PR is ready: ensure it has done 
 
 ## Risk check
 
-If your PR process includes a risk review, then follow the risk check procedure:
+If your PR process includes a risk review, AND all human-review slots are taken, then follow the risk check procedure to front-run any risk-check findings.
 
+A clean risk check increases the chance that a PR can be merged without a human.
+
+<risk-check-procedue>
 When the work is done, agents should: 
 
 Open as a draft right away and report "draft ready for risk check".
 
-After the agent reports:
+After the agent reports its done:
 
 Create A fresh, read-only agent runs the risk assessment and code review without posting anything, then reports back.
 Findings. P0 and P1 get fixed. P2 or lower, and edge cases, go to you before any fix.
-
+</risk-check-procedure>
 
 ## Comment review 
 
