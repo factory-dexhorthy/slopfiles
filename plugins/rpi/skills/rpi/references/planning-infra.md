@@ -34,3 +34,7 @@ Inline `$SKILLBASE/assets/review-comments.js` into every published page, in a `<
   </comment>
 </page-review>
 ```
+
+## Other skills
+
+If you have a `*-prd-mirror` skill, defer to more specific instructions there.
