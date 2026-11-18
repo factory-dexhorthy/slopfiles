@@ -18,6 +18,7 @@
 .rc-bar{position:fixed;right:16px;bottom:16px;display:flex;gap:6px}
 .rc-box textarea{all:initial;display:block;box-sizing:border-box;width:100%;min-height:72px;padding:6px;font:13px/1.4 var(--rc-font);color:var(--rc-fg);background:var(--rc-bg);border:1px solid var(--rc-line);border-radius:4px;resize:vertical;white-space:pre-wrap}
 .rc-box textarea:focus{border-color:var(--rc-accent)}
+.rc-quote{all:initial;display:block;margin:0 0 6px;padding-left:8px;border-left:2px solid var(--rc-accent);font:12px/1.4 var(--rc-font);color:color-mix(in srgb,var(--rc-fg) 65%,var(--rc-bg));max-height:4.2em;overflow:hidden;overflow-wrap:anywhere}
 .rc-row{display:flex;gap:6px;justify-content:flex-end;margin-top:6px}
 .rc-box button,.rc-bar button{all:initial;cursor:pointer;font:13px/1 var(--rc-font);color:var(--rc-fg);background:var(--rc-soft);border:1px solid var(--rc-line);border-radius:4px;padding:6px 10px}
 .rc-box button.rc-primary,.rc-bar button.rc-primary{background:var(--rc-accent);color:var(--rc-bg);border-color:var(--rc-accent)}
@@ -45,6 +46,15 @@
   const targetOf = (el) => {
     const t = textOf(el);
     return t.length > 80 ? t.slice(0, 80).trimEnd() + '…' : t;
+  };
+  const previewOf = (el) => {
+    if (el.tagName === 'IMG') {
+      const src = el.getAttribute('src') || '';
+      const path = src.startsWith('data:') ? '' : src.length > 60 ? '…' + src.slice(-59) : src;
+      return `[image: ${path || clean(el.alt) || 'inline'}]`;
+    }
+    const t = targetOf(el);
+    return t ? `[${t}]` : '[…]';
   };
 
   const sectionOf = (el) => {
@@ -125,7 +135,7 @@
     const del = ui('button', '', 'Delete');
     const ok = ui('button', 'rc-primary', 'Save');
     row.append(...(existing ? [del] : []), cancel, ok);
-    box.append(area, row);
+    box.append(ui('div', 'rc-quote', previewOf(el)), area, row);
 
     const r = el.getBoundingClientRect();
     const width = Math.min(360, document.documentElement.clientWidth - 16);
