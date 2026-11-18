@@ -120,3 +120,7 @@ When handing a phase to another agent or session:
 | Research | the research-questions document and the sources it points to |
 | Design / PRD / TDD | request, research, earlier design documents |
 | Outline / Implement | everything |
+
+## Docs and Comments
+
+Many RPI workflows rely on document-based interactions (plans, descriptions, proposals). If a user sends comments on docs, infer they likely want you to update the doc, instead of or in addition to replying to the thread. If the request is straightforward, update the doc and resolve the comment.
