@@ -22,6 +22,8 @@ repos:
 
 <What this phase accomplishes and why it comes first.>
 
+**After this merges:** <what we can run or see that we couldn't before>
+
 ### Change Outline
 
 <Show the relevant code shapes and ownership. Choose the views and order that explain this phase: file tree, contracts, types, tables, call trees, component trees, or pseudocode. Place short explanations beside each view. Include the tests supporting this result.>

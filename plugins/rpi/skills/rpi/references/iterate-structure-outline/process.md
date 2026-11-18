@@ -20,7 +20,7 @@ Read `$SKILLBASE/references/iterate-structure-outline/references/structure_outli
 
 ## 4. Rework the Phases
 
-Reorganize the work into independently testable results, crossing relevant module boundaries where useful. Each phase's checks should work with the code completed by that point. Include code shapes, ownership, test changes, and enough explanation to review each result.
+Read `$SKILLBASE/references/slicing.md`. Reorganize the work into slices that each make tangible progress, crossing relevant module boundaries where useful. Each phase's checks should work with the code completed by that point. Include code shapes, ownership, test changes, and enough explanation to review each result.
 
 Apply scope and ordering feedback to the phases and overview together. Incorporate answered questions into the relevant sections. Preserve valid completion markers for work already verified, and identify checks that need another run when scope changes.
 

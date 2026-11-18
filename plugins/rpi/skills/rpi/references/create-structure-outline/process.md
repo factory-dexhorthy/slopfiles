@@ -16,9 +16,9 @@ Read the source files cited by the documents and check the project's test and ve
 
 Read `$SKILLBASE/references/show-me.md` and `$SKILLBASE/references/create-structure-outline/references/structure_outline_template.md`.
 
-## 4. Divide the Work into Testable Phases
+## 4. Divide the Work into Slices
 
-Prefer small end-to-end results that cross the relevant module or service boundaries. Each phase should work and be verifiable when it ends. For example, first serve a simple result end to end, then add editing, then an error path, each with its tests.
+Read `$SKILLBASE/references/slicing.md` and divide the work into slices that each make tangible progress. Each phase of the outline is one slice: it should work and be verifiable when it ends. For example, first serve a simple result end to end, then add editing, then an error path, each with its tests.
 
 Adapt this approach to the actual work. Some changes are best as one phase; others need a safe preparatory step. Order phases so their checks can run with the work completed so far.
 
