@@ -11,7 +11,9 @@
   };
 
   const css = `
+[data-rc-hover]{outline:1px dashed #f5b400!important;outline-offset:2px;cursor:pointer}
 [data-rc-marked]{outline:2px solid #f5b400!important;outline-offset:2px;background:rgba(245,180,0,.12)!important}
+[data-rc-marked][data-rc-hover]{background:rgba(245,180,0,.24)!important}
 .rc-box,.rc-bar{all:initial;position:absolute;z-index:2147483647;box-sizing:border-box;font:13px/1.4 system-ui,sans-serif;color:#222;background:#fff;border:1px solid #ccc;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.18);padding:8px}
 .rc-bar{position:fixed;right:16px;bottom:16px;display:flex;gap:6px}
 .rc-box textarea{all:initial;display:block;box-sizing:border-box;width:100%;min-height:72px;padding:6px;font:13px/1.4 system-ui,sans-serif;color:#222;background:#fff;border:1px solid #ccc;border-radius:4px;resize:vertical;white-space:pre-wrap}
@@ -178,14 +180,28 @@
     save(); closeBox(); render();
   };
 
-  document.addEventListener('click', (e) => {
-    const t = e.target;
-    if (!(t instanceof Element) || t.closest(SKIP)) return;
-    if (String(getSelection() || '')) return;
+  const blockAt = (t) => {
+    if (!(t instanceof Element) || t.closest(SKIP)) return undefined;
     const el = t.closest(BLOCKS);
-    if (el && document.body.contains(el)) openBox(el);
+    return el && document.body.contains(el) ? el : null;
+  };
+
+  document.addEventListener('click', (e) => {
+    const el = blockAt(e.target);
+    if (el === undefined || String(getSelection() || '')) return;
+    if (el) openBox(el);
     else closeBox();
   });
+
+  let hovered = null;
+  const hover = (el) => {
+    if (el === hovered) return;
+    hovered?.removeAttribute('data-rc-hover');
+    hovered = el;
+    el?.setAttribute('data-rc-hover', '');
+  };
+  document.addEventListener('mouseover', (e) => hover(blockAt(e.target) || null));
+  document.addEventListener('mouseout', (e) => { if (!e.relatedTarget) hover(null); });
 
   render();
 })();
