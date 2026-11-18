@@ -18,7 +18,9 @@ When a choice depends on facts that the research has not established, use `codeb
 
 Read `$SKILLBASE/references/create-design-discussion/references/design_discussion_template.md`, `$SKILLBASE/references/decisions.md`, and `$SKILLBASE/references/show-me.md`.
 
-Use focused before-and-after diagrams, trees, contracts, or pseudocode to explain the current system, the end state, and each decision. Place each view beside the short explanation it supports.
+For product decisions, show what users see and do: a linked HTML mockup for a screen, or a workflow for a sequence of steps, as numbered steps or a Mermaid flowchart. Skip the view when a sentence makes the point.
+
+For technical decisions, use focused before-and-after diagrams, trees, contracts, or pseudocode. Place each view beside the short explanation it supports.
 
 Use `diff` blocks when the main point is what changes. Show the complete target shape when it makes ownership or order clearer.
 
@@ -28,9 +30,9 @@ Write `NN-design-discussion-<description>.md` in the task directory using the ne
 
 Describe the current experience, desired result, scope, design, and existing patterns to follow. Include file locations and short examples of those patterns, along with the existing testing approach.
 
-Describe the current and desired experience in terms of what users see and can do. Use the design and patterns sections for code structure, source references, and implementation examples.
+Describe the current and desired experience in terms of what users see and can do. Use the technical decisions and patterns sections for code structure, source references, and implementation examples.
 
-Write every design choice under **Design**, following `decisions.md`. Ground each decision and its alternatives in the codebase. Write choices the user already settled the same way.
+Write every design choice under **Design**, following `decisions.md`. Start with the product decisions, then the technical decisions that build on them. Ground each decision and its alternatives in the codebase. Write choices the user already settled the same way.
 
 Use section headers that state the main point so the reader can understand the change by skimming them.
 

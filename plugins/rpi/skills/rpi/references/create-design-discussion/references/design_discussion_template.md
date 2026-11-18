@@ -25,11 +25,11 @@ repos:
 
 ## Design
 
-<How the pieces fit together once this is built, as decisions from the most fundamental to the least, written as described in `$SKILLBASE/references/decisions.md`. D1 sets the overall shape, with a focused before-and-after view.>
+<Decisions from the most fundamental to the least, written as described in `$SKILLBASE/references/decisions.md`. Product decisions come first: what users see and do. Technical decisions follow and build on them. Number both in one sequence.>
 
-### D1. <What we'll do, stated as the result>
+### D1. <What users will see or be able to do>
 
-<What we'll do and why, with the smallest view that makes it clear.>
+<The behavior and why, with a mockup or workflow where it helps.>
 
 <details>
 <summary>Alternatives and motivation (<N>)</summary>
@@ -39,6 +39,10 @@ repos:
 <The same detail and the same kind of view as D1, and why we chose D1 instead.>
 
 </details>
+
+### D<N>. <How the pieces fit together, stated as the result>
+
+<What we'll do and why. The first technical decision sets the overall shape, with a focused before-and-after view.>
 
 ## Patterns to Follow
 
