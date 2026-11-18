@@ -34,10 +34,9 @@ The user will tell you how many ready slots to keep. Default to 2.
 
 ## PR Format
 
-- PRs should follow references/prose.md and references/show-me.md closely - tight and concise, while following repo conventions
+- PRs should follow references/prose.md and references/show-me.md closely - tight and concise, while following repo conventions for PR format
 - Include links on the first line `[TICKETID](link to ticket) | [PRD](...) | ...so on for tdd, slices, etc if linkable`
 - For PRs that are part of a large slice plan, include the slices outline near the top, with this slice in bold.
--
 - Unfurl this slice's siblings, root parent and all the root parent's children - do not unfurl every grandchild of the slice
 
 ```
@@ -79,3 +78,38 @@ The user will tell you how many ready slots to keep. Default to 2.
 - Each PR names the issue it closes (for example "Closes ABC-123"), so merging closes it.
 - Keep each issue's state in step with its PR: no PR, draft, in review, merged.
 - Update the tree when a slice is split, merged, or dropped.
+
+## Shipping with agents 
+
+- If you are an orchestrator over SpawnAgents, use roughly one agent per PR, and ensure it reads all RPI docs before starting work (`/rpi implement-outline` should do this already).
+- It is acceptable to have multiple PRs from a single agent roughly only if an agent makes one PR and then later decides to break that PR up (other such exceptions may arise, use your judgement, but lean mildly toward new agent if unsure)
+
+
+## Autonomous first-pass polish
+
+When an agent reports finished work or. a draft PR is ready: ensure it has done the following
+
+- simplify:
+    - "Review your complete body of work, and try to simplify it. Remove code that is now dead. Simplify code that can now be simpler. Reuse code that makes sense to be shared. Find leftovers from previous attempts." Do it again after each round of review fixes. Never change code that has already merged.
+- review any new or changed comments follow prose.md
+- use a local clone of K-Mistele/anti-slop - read the oxlint rules and apply them to the code that was just written
+- check for test clarity: No unexplained numbers or strings, helpers take named fields, test read top to bottom as "given X, expect Y", and expected values are written out, never computed with the code under test.
+
+## Risk check
+
+If your PR process includes a risk review, then follow the risk check procedure:
+
+When the work is done, agents should: 
+
+Open as a draft right away and report "draft ready for risk check".
+
+After the agent reports:
+
+Create A fresh, read-only agent runs the risk assessment and code review without posting anything, then reports back.
+Findings. P0 and P1 get fixed. P2 or lower, and edge cases, go to you before any fix.
+
+
+## Comment review 
+
+If a PR ends with comments / feedback from a review bot, follow review-comments.md to work through them with the user.
+
