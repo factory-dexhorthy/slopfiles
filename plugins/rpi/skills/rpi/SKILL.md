@@ -77,6 +77,8 @@ Use artifact filenames to locate the current phase when asked what's next, then 
 
 Read `$SKILLBASE/references/shipping.md` when planning slices or PRs, opening or stacking PRs, or choosing reviewers.
 
+When the user asks for help digesting or understanding the review comments on a PR, read `$SKILLBASE/references/review-comments.md` and walk them through one comment at a time.
+
 ## Share and Review Documents
 
 Read `$SKILLBASE/references/planning-infra.md` when several agents share the workflow documents.
