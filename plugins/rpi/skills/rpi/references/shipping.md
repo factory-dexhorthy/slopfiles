@@ -1,10 +1,10 @@
 # Ship in Slices
 
-How to turn an agreed design into small PRs and get them reviewed. A slice is one PR-sized piece of the change that works end to end. For where the workflow documents live and how the user reviews them, read `planning-infra.md`. For how to talk with the user, follow the Work With the User section in `SKILL.md`.
+How to get each slice of the outline merged and reviewed. Plan the slices with `slicing.md` first: every slice makes tangible progress, on the fewest lines and PRs to the next thing the user can test or demo. For where the workflow documents live and how the user reviews them, read `planning-infra.md`. For how to talk with the user, follow the Work With the User section in `SKILL.md`.
 
 ## Keep Changes Small
 
-- Design each PR so an automated risk reviewer can approve it alone: small, well tested, and away from startup and hot paths.
+- Within a slice, design each PR so an automated risk reviewer can approve it alone: small, well tested, and away from startup and hot paths.
 - When a phase comes out too big, split it into numbered sub-PRs: 4.2.1, 4.2.2.
 - Each PR carries its own tests for what it adds, so tests land with their code.
 - PR titles should include the slice number, if applicable, e.g. feat(cli): 4.2.1: ...

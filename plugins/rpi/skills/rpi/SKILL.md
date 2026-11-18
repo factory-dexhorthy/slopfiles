@@ -75,7 +75,9 @@ Use artifact filenames to locate the current phase when asked what's next, then 
 
 ## Ship in Slices
 
-Read `$SKILLBASE/references/shipping.md` when planning slices or PRs, opening or stacking PRs, or choosing reviewers.
+Read `$SKILLBASE/references/slicing.md` when planning or reordering slices, in an outline or anywhere else.
+
+Read `$SKILLBASE/references/shipping.md` when opening or stacking PRs, handling review findings, or choosing reviewers.
 
 When the user asks for help digesting or understanding the review comments on a PR, read `$SKILLBASE/references/review-comments.md` and walk them through one comment at a time.
 
