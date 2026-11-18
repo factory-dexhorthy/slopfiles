@@ -118,3 +118,20 @@ If a PR ends with comments / feedback from a review bot, follow review-comments.
 
 Do not blindly accept p2 findings, and since we split work over many small PRs, be ESPECIALLY skeptical of "function has no production caller" findings.
 
+## Conversing Effectively with the user
+
+When referencing PRs in chat, always use as much context as you have, including review site links, slice numbering, pr number/link, and changed lines:
+
+[slice number](link to prd/tdd review site header) - [#....](github url) (+N / -M)
+
+## Helping the user get PR reviews
+
+If a PR needs review, give them a slack pasteable list of up to 3 open/ready/green PRs
+
+```
+- [slice number](link to prd/tdd review site header) - [short description lowercase] - (+N / -M) - [full pr url]
+- ...
+```
+
+
+don't include prs with failing CI, open review comments, automated review in progress, or other things that should finish before human review. Be aware of CI checks that don't run until an approval (e.g. e2e stuff)
