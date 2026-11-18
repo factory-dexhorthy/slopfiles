@@ -11,15 +11,16 @@
   };
 
   const css = `
-[data-rc-hover]{outline:1px dashed #f5b400!important;outline-offset:2px;cursor:pointer}
-[data-rc-marked]{outline:2px solid #f5b400!important;outline-offset:2px;background:rgba(245,180,0,.12)!important}
-[data-rc-marked][data-rc-hover]{background:rgba(245,180,0,.24)!important}
-.rc-box,.rc-bar{all:initial;position:absolute;z-index:2147483647;box-sizing:border-box;font:13px/1.4 system-ui,sans-serif;color:#222;background:#fff;border:1px solid #ccc;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.18);padding:8px}
+[data-rc-hover]{outline:1px dashed var(--rc-accent)!important;outline-offset:2px;cursor:pointer}
+[data-rc-marked]{outline:2px solid var(--rc-accent)!important;outline-offset:2px;background:color-mix(in srgb,var(--rc-accent) 12%,transparent)!important}
+[data-rc-marked][data-rc-hover]{background:color-mix(in srgb,var(--rc-accent) 24%,transparent)!important}
+.rc-box,.rc-bar{all:initial;position:absolute;z-index:2147483647;box-sizing:border-box;font:13px/1.4 var(--rc-font);color:var(--rc-fg);background:var(--rc-bg);border:1px solid var(--rc-line);border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.25);padding:8px}
 .rc-bar{position:fixed;right:16px;bottom:16px;display:flex;gap:6px}
-.rc-box textarea{all:initial;display:block;box-sizing:border-box;width:100%;min-height:72px;padding:6px;font:13px/1.4 system-ui,sans-serif;color:#222;background:#fff;border:1px solid #ccc;border-radius:4px;resize:vertical;white-space:pre-wrap}
+.rc-box textarea{all:initial;display:block;box-sizing:border-box;width:100%;min-height:72px;padding:6px;font:13px/1.4 var(--rc-font);color:var(--rc-fg);background:var(--rc-bg);border:1px solid var(--rc-line);border-radius:4px;resize:vertical;white-space:pre-wrap}
+.rc-box textarea:focus{border-color:var(--rc-accent)}
 .rc-row{display:flex;gap:6px;justify-content:flex-end;margin-top:6px}
-.rc-box button,.rc-bar button{all:initial;cursor:pointer;font:13px/1 system-ui,sans-serif;color:#222;background:#f2f2f2;border:1px solid #ccc;border-radius:4px;padding:6px 10px}
-.rc-box button.rc-primary,.rc-bar button.rc-primary{background:#222;color:#fff;border-color:#222}
+.rc-box button,.rc-bar button{all:initial;cursor:pointer;font:13px/1 var(--rc-font);color:var(--rc-fg);background:var(--rc-soft);border:1px solid var(--rc-line);border-radius:4px;padding:6px 10px}
+.rc-box button.rc-primary,.rc-bar button.rc-primary{background:var(--rc-accent);color:var(--rc-bg);border-color:var(--rc-accent)}
 .rc-bar button:disabled{opacity:.45;cursor:default}`;
 
   const clean = (s) => (s || '').replace(/\s+/g, ' ').trim();
@@ -79,8 +80,20 @@
     return el;
   };
 
+  // Take the page's own font and colors so the comment UI matches whatever design system the page uses.
+  const theme = () => {
+    const root = getComputedStyle(document.documentElement);
+    const body = getComputedStyle(document.body);
+    const clear = (c) => !c || c === 'transparent' || /^rgba\(.*,\s*0\)$/.test(c);
+    const bg = [body.backgroundColor, root.backgroundColor].find((c) => !clear(c)) || '#fff';
+    const link = document.querySelector('a[href]');
+    const accent = root.getPropertyValue('--review-accent').trim() || (link && getComputedStyle(link).color) || '#f5b400';
+    return `:root{--rc-bg:${bg};--rc-fg:${body.color};--rc-font:${body.fontFamily};--rc-accent:${accent};`
+      + '--rc-line:color-mix(in srgb,var(--rc-fg) 22%,var(--rc-bg));--rc-soft:color-mix(in srgb,var(--rc-fg) 8%,var(--rc-bg))}';
+  };
+
   const style = ui('style');
-  style.textContent = css;
+  style.textContent = theme() + css;
   document.head.appendChild(style);
 
   const bar = ui('div', 'rc-bar');
