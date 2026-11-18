@@ -172,7 +172,6 @@ ${needName ? '<input class="nm" placeholder="Your name (saved for next time)">' 
       setTimeout(() => { copyBtn.textContent = label; }, 1400);
     });
     clearBtn.addEventListener('click', () => {
-      if (!confirm(`Delete all ${comments.length} comments on this page?`)) return;
       comments = []; save(comments); refresh();
     });
     let hovered = null;
