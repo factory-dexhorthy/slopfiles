@@ -25,7 +25,7 @@ Keep it short. No preamble, no recap of earlier issues, no extra options.
 
 ## After Each Answer
 
-- Pass the decision to the agent that owns the PR right away, and tell it to hold all pushes until every comment is decided.
+- Pass the decision to the agent that owns the PR right away, and tell it start working but to hold all pushes until every comment is decided.
 - Then show the next issue.
 
 ## When Every Comment Is Decided
