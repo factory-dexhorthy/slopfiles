@@ -6,6 +6,7 @@ How to get each slice merged and reviewed. Plan the slices with `slicing.md` fir
 
 - Within a slice, design each PR so an automated risk reviewer can approve it alone: small, well tested, and away from startup and hot paths.
 - When a phase comes out too big, split it into numbered sub-PRs: 4.2.1, 4.2.2.
+- aim for <300 lines of production code changed per PR, but this is a loose ceiling. some may be much smaller, and splitting may be so inconvenient as to justify going over.
 - Each PR carries its own tests for what it adds, so tests land with their code.
 - PR titles should include the slice number, if applicable, e.g. feat(cli): 4.2.1: ...
 
