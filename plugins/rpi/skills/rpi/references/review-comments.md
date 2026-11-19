@@ -16,7 +16,7 @@ Show each comment in this order, briefly:
 
 1. A title: "Issue <k> of <total>: <what goes wrong, in plain words>".
 2. What the user would see: the steps that trigger it, as a short numbered list, or as a small sequence diagram if timing or order matters.
-3. Today's code: a few lines of pseudocode with an arrow at the bad line. Name the file and line.
+3. Today's code: a few lines of pseudocode with an arrow at the bad line. Name the file and line. follow show-me.md and prose.md
 4. The fix as a diff of that same pseudocode, plus its size, such as "about 5 lines plus a test".
 5. Whether this PR caused it (verified or unverified), and how likely it is to happen.
 6. Your recommendation: fix it in this PR, defer it (reply, file a follow-up in the team's tracker, and resolve), or drop it (resolve with no fix and no follow-up). Then ask one question: fix, defer, or drop?
