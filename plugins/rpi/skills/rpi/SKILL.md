@@ -39,6 +39,7 @@ Update an existing document by default; create one when needed or requested. Whe
 ## Work With the User
 
 - Ask the user one question at a time, each with your recommendation.
+- Never use the AskUserQuestion tool (or any similar multiple-choice question tool) unless the user requests it. Ask in plain text instead.
 - Show options as pictures or as a diff of the plan.
 - Keep messages short and plain.
 - Write every PR as slice (PR), linking the slice number to its heading on the review site and the PR number to the PR: `[5.5](https://review.example.com/slices.html#slice-5-5) ([#1234](https://git.example.com/org/repo/pull/1234))`, or `[5.6](https://review.example.com/slices.html#slice-5-6) (no PR)` before it opens.
