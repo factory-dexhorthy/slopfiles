@@ -209,9 +209,14 @@
     return el && document.body.contains(el) ? el : null;
   };
 
+  let down = null;
+  document.addEventListener('mousedown', (e) => { down = { x: e.clientX, y: e.clientY }; });
   document.addEventListener('click', (e) => {
+    // A drag, double/triple click, or live selection ends in a click too; opening the box there would steal focus and drop the reader's highlight.
+    const dragged = down && Math.hypot(e.clientX - down.x, e.clientY - down.y) > 4;
+    if (dragged || e.detail > 1 || String(getSelection() || '').trim()) return;
     const el = blockAt(e.target);
-    if (el === undefined || String(getSelection() || '')) return;
+    if (el === undefined) return;
     if (el) openBox(el);
     else closeBox();
   });

@@ -58,7 +58,10 @@ if (pdfArg) { pdfName = path.basename(pdfArg); fs.copyFileSync(pdfArg, path.join
 
 const renderer = new marked.Renderer();
 const baseCode = renderer.code.bind(renderer);
-renderer.code = (tok) => tok.lang === 'mermaid' ? `<pre class="mermaid">${tok.text}</pre>` : baseCode(tok);
+const diffClass = (l) => /^(\+\+\+|---)( |$)/.test(l) ? ' dm' : l.startsWith('@@') ? ' dh' : l[0] === '+' ? ' da' : l[0] === '-' ? ' dd' : '';
+renderer.code = (tok) => tok.lang === 'mermaid' ? `<pre class="mermaid">${tok.text}</pre>`
+  : tok.lang === 'diff' ? `<pre><code class="diff">${tok.text.split('\n').map((l) => `<span class="dl${diffClass(l)}">${esc(l) || ' '}</span>`).join('')}</code></pre>`
+  : baseCode(tok);
 const title = (md.match(/^# (.*)$/m) || [, 'PRD'])[1].replace(/^PRD:\s*/, '');
 md = md.replace(/^# .*\n/m, '');
 const sections = [...md.matchAll(/^## (.*)$/gm)].map((m) => m[1]);
@@ -77,11 +80,16 @@ const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
 const body = pairFigures(marked.parse(md, { renderer }).replace(/^<\/section>/, ''));
 const mark = fs.readFileSync(path.join(HERE, 'factory-mark.svg'), 'utf8');
 const built = new Date().toISOString().slice(0, 16).replace('T', ' ');
+// Dark is the default; light applies when the reader picks it or the system prefers it and they haven't picked dark.
+const dark = 'color-scheme: dark; --mode: dark; --oT: #ffa675; --bg: #060505; --s1: #0c0b0a; --s2: #151311; --ln: #1d1a18; --ln2: #2e2926; --t1: #fdfcfb; --t2: #e4ded9; --t3: #a39891; --topbg: rgba(6,5,5,.82); --shadow: var(--shadow); --da-bg: rgba(46,160,67,.22); --da: #aff5b4; --dd-bg: rgba(248,81,73,.22); --dd: #ffc1bc; --dh: #79c0ff;';
+const light = 'color-scheme: light; --mode: light; --oT: #c2410c; --bg: #fdfcfb; --s1: #f6f3f0; --s2: #eeeae6; --ln: #e4dfda; --ln2: #d2cbc5; --t1: #141110; --t2: #2b2624; --t3: #6b625c; --topbg: rgba(253,252,251,.85); --shadow: rgba(0,0,0,.12); --da-bg: #dafbe1; --da: #116329; --dd-bg: #ffebe9; --dd: #82071e; --dh: #0550ae;';
 const style = `<style>
-:root { --o: #ff5a00; --oT: #ffa675; --bg: #060505; --s1: #0c0b0a; --s2: #151311; --ln: #1d1a18; --ln2: #2e2926; --t1: #fdfcfb; --t2: #b5ada7; --t3: #80756f; --mono: 'Geist Mono', ui-monospace, monospace; }
+:root { --o: #ff5a00; --mono: 'Geist Mono', ui-monospace, monospace; ${dark} }
+:root[data-theme="light"] { ${light} }
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) { ${light} } }
 html, body { margin: 0; background: var(--bg); color: var(--t1); font-family: 'Geist', system-ui, sans-serif; letter-spacing: -0.01em; -webkit-font-smoothing: antialiased; }
 a { color: var(--oT); text-decoration: none; } a:hover { text-decoration: underline; }
-.top { position: sticky; top: 0; z-index: 50; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; padding: 12px 28px; background: rgba(6,5,5,.82); backdrop-filter: blur(20px) saturate(140%); border-bottom: 1px solid var(--ln); }
+.top { position: sticky; top: 0; z-index: 50; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; padding: 12px 28px; background: var(--topbg); backdrop-filter: blur(20px) saturate(140%); border-bottom: 1px solid var(--ln); }
 .brand { display: flex; align-items: center; gap: 10px; color: var(--t1); }
 .brand svg { width: 22px; height: 22px; color: var(--t1); }
 .brand b { font-weight: 600; font-size: 15px; } .brand span { color: var(--t3); font-size: 13.5px; }
@@ -105,12 +113,15 @@ p, li { color: var(--t2); font-size: 15.5px; line-height: 1.6; max-width: 780px;
 strong { color: var(--t1); font-weight: 500; } em { color: var(--t1); }
 code { font: 13px var(--mono); background: var(--s2); color: var(--oT); padding: 1px 5px; border-radius: 4px; box-shadow: inset 0 0 0 1px var(--ln); }
 pre { background: var(--s1); border: 1px solid var(--ln); padding: 14px; border-radius: 8px; overflow: auto; }
-pre code { background: none; box-shadow: none; padding: 0; color: var(--t2); }
+pre code { background: none; box-shadow: none; padding: 0; color: var(--t1); }
+pre code.diff { display: inline-block; min-width: 100%; }
+.dl { display: block; padding: 0 6px; margin: 0 -6px; } .da { background: var(--da-bg); color: var(--da); } .dd { background: var(--dd-bg); color: var(--dd); } .dh { color: var(--dh); } .dm { color: var(--t3); }
+.theme { padding: 6px 10px; border-radius: 6px; border: 1px solid var(--ln2); background: var(--s2); color: var(--t1); font: 500 12.5px 'Geist', system-ui, sans-serif; cursor: pointer; }
 pre.mermaid { background: var(--s1); text-align: center; padding: 20px; }
 pre.mermaid svg { max-height: 520px; max-width: 100%; }
 p:has(> a > img) { max-width: none; }
-img { display: block; width: 100%; border-radius: 10px; box-shadow: 0 0 0 1px var(--ln2), 0 20px 50px rgba(0,0,0,.5); cursor: zoom-in; margin: 18px 0 6px; }
-a:has(img):hover img { box-shadow: 0 0 0 1px var(--o), 0 20px 50px rgba(0,0,0,.5); }
+img { display: block; width: 100%; border-radius: 10px; box-shadow: 0 0 0 1px var(--ln2), 0 20px 50px var(--shadow); cursor: zoom-in; margin: 18px 0 6px; }
+a:has(img):hover img { box-shadow: 0 0 0 1px var(--o), 0 20px 50px var(--shadow); }
 blockquote { border-left: 2px solid var(--o); margin: 0; padding-left: 14px; }
 table { border-collapse: collapse; font-size: 14px; } td, th { border: 1px solid var(--ln2); padding: 6px 10px; color: var(--t2); text-align: left; } th { color: var(--t1); font-weight: 500; background: var(--s2); }
 figure.anno { display: grid; grid-template-columns: minmax(0, 3fr) minmax(240px, 1fr); gap: 20px; margin: 18px 0 8px; align-items: start; width: min(1360px, calc(100vw - 48px)); position: relative; left: 50%; transform: translateX(-50%); }
@@ -124,12 +135,38 @@ ol.notes li::before { content: counter(n); width: 20px; height: 20px; border-rad
 @media (max-width: 800px) { figure.anno { grid-template-columns: 1fr; } ol.notes { position: static; } }footer.wrap { margin: 60px auto 40px; padding-top: 16px; border-top: 1px solid var(--ln); font-size: 12px; color: var(--t3); font-family: var(--mono); }
 </style>`;
 const brand = `<span class="brand">${mark}<b>Factory</b><span>${esc(label)}</span></span><span class="fl"></span>`;
-const mermaidInit = `<script src="mermaid.min.js"></script><script>mermaid.initialize({ startOnLoad: true, theme: 'base', fontFamily: 'Geist', themeVariables: { darkMode: true, background: '#0c0b0a', primaryColor: '#151311', primaryBorderColor: '#2e2926', primaryTextColor: '#fdfcfb', secondaryColor: '#151311', tertiaryColor: '#0c0b0a', lineColor: '#ff5a00', textColor: '#b5ada7', edgeLabelBackground: '#0c0b0a', clusterBkg: '#0c0b0a', fontSize: '14px' } });</script>`;
-const head = (t) => `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(t)} · Factory</title><meta name="robots" content="noindex"><link rel="stylesheet" href="fonts.css">${style}</head><body>`;
+// Mermaid bakes colors into its SVG, so keep each diagram's source and redraw it from the current palette when the theme changes.
+const mermaidInit = `<script src="mermaid.min.js"></script><script>(() => {
+  const els = [...document.querySelectorAll('pre.mermaid')];
+  els.forEach((e) => { e.dataset.src = e.textContent; });
+  const draw = () => {
+    const c = getComputedStyle(document.documentElement), v = (n) => c.getPropertyValue(n).trim();
+    mermaid.initialize({ startOnLoad: false, theme: 'base', fontFamily: 'Geist', themeVariables: { darkMode: v('--mode') === 'dark', background: v('--s1'), primaryColor: v('--s2'), primaryBorderColor: v('--ln2'), primaryTextColor: v('--t1'), secondaryColor: v('--s2'), tertiaryColor: v('--s1'), lineColor: v('--o'), textColor: v('--t2'), edgeLabelBackground: v('--s1'), clusterBkg: v('--s1'), fontSize: '14px' } });
+    els.forEach((e) => { e.removeAttribute('data-processed'); e.textContent = e.dataset.src; });
+    mermaid.run({ nodes: els });
+  };
+  draw();
+  addEventListener('themechange', draw);
+  matchMedia('(prefers-color-scheme: light)').addEventListener('change', draw);
+})();</script>`;
+// The saved choice is applied in <head> so the page never flashes the wrong palette.
+const themeHead = `<script>try { const t = localStorage.getItem('prd-theme'); if (t) document.documentElement.dataset.theme = t; } catch {}</script>`;
+const themeToggle = `<button class="theme" type="button" title="Theme: follows the system until you pick one"></button><script>(() => {
+  const b = document.currentScript.previousElementSibling, modes = ['system', 'light', 'dark'], root = document.documentElement;
+  const label = () => { b.textContent = 'Theme: ' + { system: 'System', light: 'Light', dark: 'Dark' }[root.dataset.theme || 'system']; };
+  b.addEventListener('click', () => {
+    const next = modes[(modes.indexOf(root.dataset.theme || 'system') + 1) % 3];
+    if (next === 'system') delete root.dataset.theme; else root.dataset.theme = next;
+    try { next === 'system' ? localStorage.removeItem('prd-theme') : localStorage.setItem('prd-theme', next); } catch {}
+    label(); dispatchEvent(new Event('themechange'));
+  });
+  label();
+})();</script>`;
+const head = (t) => `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(t)} · Factory</title><meta name="robots" content="noindex"><link rel="stylesheet" href="fonts.css">${themeHead}${style}</head><body>`;
 fs.writeFileSync(path.join(S, 'index.html'), linkImages(`${head(`PRD: ${title}`)}
 <header class="top">${brand}
 <nav class="nav">${sections.map((s) => `<a href="#${slug(s)}">${esc(s)}</a>`).join('')}</nav>
-${pdfName ? `<a class="cta" href="${pdfName}">PDF</a>` : ''}</header>
+${themeToggle}${pdfName ? `<a class="cta" href="${pdfName}">PDF</a>` : ''}</header>
 <div class="wrap">
 <div class="intro"><div class="eyebrow"><span class="a">${esc(label)}</span></div>
 <h1>${title}</h1>
@@ -152,7 +189,7 @@ if (qdirArg && fs.existsSync(qdirArg)) {
     q = q.replace(/^# .*\n/m, '');
     const decided = /^> \*\*Decided/m.test(q);
     fs.writeFileSync(path.join(S, f.replace(/\.md$/, '.html')), linkImages(`${head(qt)}
-<header class="top">${brand}<a class="cta" href="index.html">Back to the PRD</a></header>
+<header class="top">${brand}${themeToggle}<a class="cta" href="index.html">Back to the PRD</a></header>
 <div class="wrap"><div class="intro"><div class="eyebrow"><span class="a">${decided ? 'Decided' : 'Open question'}</span><span>${esc(title)}</span></div><h1>${qt}</h1></div>${pairFigures(marked.parse(q, { renderer: qRenderer }))}</div>
 <footer class="wrap">built ${built} UTC</footer>${q.includes('```mermaid') ? mermaidInit : ''}<script src="review.js"></script></body></html>`));
   }

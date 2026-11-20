@@ -6,27 +6,27 @@
   const css = `
 .rv-hover { outline: 1px dashed #ff5a00; outline-offset: 4px; border-radius: 4px; cursor: pointer; }
 .rv-has { box-shadow: -10px 0 0 -8px #ff5a00; }
-img.rv-has { box-shadow: 0 0 0 2px #ff5a00, 0 20px 50px rgba(0,0,0,.5); }
+img.rv-has { box-shadow: 0 0 0 2px #ff5a00, 0 20px 50px var(--shadow); }
 .rv-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; padding: 0 5px; margin-left: 8px; border-radius: 9px; background: #ff5a00; color: #000; font: 600 11px 'Geist Mono', monospace; vertical-align: middle; cursor: pointer; }
 .rv-badge.abs { position: absolute; top: 8px; right: 8px; z-index: 5; margin: 0; }
-.rv-pop { position: absolute; z-index: 100; width: 340px; background: #0c0b0a; border: 1px solid #2e2926; border-radius: 10px; box-shadow: 0 20px 50px rgba(0,0,0,.6); padding: 12px; display: flex; flex-direction: column; gap: 8px; font-family: 'Geist', system-ui, sans-serif; }
-.rv-pop .tgt { font: 11px 'Geist Mono', monospace; color: #80756f; max-height: 48px; overflow: hidden; border-left: 2px solid #ff5a00; padding-left: 8px; }
-.rv-pop .c { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; color: #b5ada7; line-height: 1.45; }
-.rv-pop .c b { color: #fdfcfb; font-weight: 500; }
-.rv-pop .c .x { margin-left: auto; color: #80756f; cursor: pointer; background: none; border: 0; font-size: 12px; }
-.rv-pop .c .x:hover { color: #ffa675; }
-.rv-pop textarea, .rv-pop input { width: 100%; box-sizing: border-box; background: #060505; color: #fdfcfb; border: 1px solid #2e2926; border-radius: 6px; padding: 8px; font: 13.5px 'Geist', system-ui, sans-serif; resize: vertical; }
+.rv-pop { position: absolute; z-index: 100; width: 340px; background: var(--s1); border: 1px solid var(--ln2); border-radius: 10px; box-shadow: 0 20px 50px var(--shadow); padding: 12px; display: flex; flex-direction: column; gap: 8px; font-family: 'Geist', system-ui, sans-serif; }
+.rv-pop .tgt { font: 11px 'Geist Mono', monospace; color: var(--t3); max-height: 48px; overflow: hidden; border-left: 2px solid #ff5a00; padding-left: 8px; }
+.rv-pop .c { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; color: var(--t2); line-height: 1.45; }
+.rv-pop .c b { color: var(--t1); font-weight: 500; }
+.rv-pop .c .x { margin-left: auto; color: var(--t3); cursor: pointer; background: none; border: 0; font-size: 12px; }
+.rv-pop .c .x:hover { color: var(--oT); }
+.rv-pop textarea, .rv-pop input { width: 100%; box-sizing: border-box; background: var(--bg); color: var(--t1); border: 1px solid var(--ln2); border-radius: 6px; padding: 8px; font: 13.5px 'Geist', system-ui, sans-serif; resize: vertical; }
 .rv-pop textarea:focus, .rv-pop input:focus { outline: none; border-color: #ff5a00; }
 .rv-pop .row { display: flex; align-items: center; gap: 8px; }
 .rv-pop .row .sp { flex: 1; }
-.rv-pop .hint { font: 11px 'Geist Mono', monospace; color: #80756f; }
-.rv-btn { padding: 6px 12px; border-radius: 6px; border: 1px solid #2e2926; background: #151311; color: #fdfcfb; font: 500 13px 'Geist', system-ui, sans-serif; cursor: pointer; }
+.rv-pop .hint { font: 11px 'Geist Mono', monospace; color: var(--t3); }
+.rv-btn { padding: 6px 12px; border-radius: 6px; border: 1px solid var(--ln2); background: var(--s2); color: var(--t1); font: 500 13px 'Geist', system-ui, sans-serif; cursor: pointer; }
 .rv-btn.p { background: #ff5a00; border-color: #ff5a00; color: #000; }
 .rv-btn:disabled { opacity: .45; cursor: default; }
 .rv-bar { display: inline-flex; align-items: center; gap: 8px; }
-.rv-bar .clear { background: none; border: 0; color: #80756f; font-size: 12px; cursor: pointer; }
-.rv-bar .clear:hover { color: #ffa675; }
-.rv-tip { font: 11px 'Geist Mono', monospace; color: #80756f; }`;
+.rv-bar .clear { background: none; border: 0; color: var(--t3); font-size: 12px; cursor: pointer; }
+.rv-bar .clear:hover { color: var(--oT); }
+.rv-tip { font: 11px 'Geist Mono', monospace; color: var(--t3); }`;
   const style = document.createElement('style');
   style.textContent = css;
   document.head.appendChild(style);
@@ -183,8 +183,14 @@ ${needName ? '<input class="nm" placeholder="Your name (saved for next time)">' 
       hovered = el;
       if (el) el.classList.add('rv-hover');
     });
+    let down = null;
+    document.addEventListener('mousedown', (e) => { down = { x: e.clientX, y: e.clientY }; });
     document.addEventListener('click', (e) => {
       if (e.target.closest('.rv-pop')) return;
+      // A drag, double/triple click, or live selection ends in a click too; opening the box there would steal focus and drop the reader's highlight.
+      const dragged = down && Math.hypot(e.clientX - down.x, e.clientY - down.y) > 4;
+      const sel = window.getSelection();
+      if (dragged || e.detail > 1 || (sel && !sel.isCollapsed && sel.toString().trim())) return;
       const el = nodeFor(e.target);
       const link = e.target.closest('a');
       if (link && !link.querySelector('img') && el && el.tagName !== 'IMG') { return; }
