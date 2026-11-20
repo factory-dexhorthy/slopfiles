@@ -25,7 +25,7 @@ The user will tell you how many ready slots to keep. Default to 2.
 - Update shared branches with `git merge --no-ff`, keeping their pushed history.
 - Prefer a few independent PRs over a long stack, and mark what each PR truly depends on.
 - Before asking anyone for review, get the PR as green as it can be: every pre-approval check passing, automated review findings resolved, and PR description checks passing.
-- if a review bot finds a p0 or p1 finding, fix it. for p2 findings, the agent watching the PR first replies on each thread with a `show-me.md` outline of what the fix would look like, then hands it to the user to choose: address+resolve, defer to a later cleanup slice in tdd+tracker (comment w/ link or number + resolve), or comment+drop+resolve
+- Handle review bot findings with `review-comments.md`: the agent fixes P0 and P1 findings and replies on each P2 thread with an outline of the fix and its size, then the user decides each P2.
 - When the user asks which prs need review, format as a short markdown-compatible list in a ```text block:
 
 ```text
@@ -110,12 +110,12 @@ Open as a draft right away and report "draft ready for risk check".
 After the agent reports its done:
 
 Create A fresh, read-only agent runs the risk assessment and code review without posting anything, then reports back.
-Findings. P0 and P1 get fixed. P2 or lower, and edge cases, go to you before any fix.
+Findings. P0 and P1 get fixed. P2 or lower, and edge cases, go to the user before any fix, written as in the Reply on P2 Threads section of review-comments.md.
 </risk-check-procedure>
 
 ## Comment review 
 
-If a PR ends with comments / feedback from a review bot, follow review-comments.md to work through them with the user.
+If a PR ends with comments / feedback from a review bot, follow review-comments.md: the owning agent fixes P0 and P1 findings and replies on P2 threads, and you tell the user how many replies need their review.
 
 Do not blindly accept p2 findings, and since we split work over many small PRs, be ESPECIALLY skeptical of "function has no production caller" findings.
 

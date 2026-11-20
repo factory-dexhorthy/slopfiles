@@ -79,7 +79,7 @@ Read `$SKILLBASE/references/slicing.md` when planning or reordering slices, in a
 
 Read `$SKILLBASE/references/shipping.md` when opening or stacking PRs, handling review findings, or choosing reviewers.
 
-When the user asks for help digesting or understanding the review comments on a PR, read `$SKILLBASE/references/review-comments.md` and walk them through one comment at a time.
+When a PR has review comments, read `$SKILLBASE/references/review-comments.md`: have the owning agent fix P0 and P1 findings and reply on P2 threads, then tell the user how many replies need their review.
 
 ## Share and Review Documents
 
