@@ -24,14 +24,7 @@ The user will tell you how many ready slots to keep. Default to 2.
 - Merge the base branch into a PR branch only when the parent merged, when there is a conflict, or right before merging. Batch pushes.
 - Update shared branches with `git merge --no-ff`, keeping their pushed history.
 - Prefer a few independent PRs over a long stack, and mark what each PR truly depends on.
-- Before asking anyone for review, get the PR as green as it can be: every pre-approval check passing, automated review findings resolved, and PR description checks passing.
-- Handle review bot findings with `review-comments.md`: the agent fixes P0 and P1 findings and replies on each P2 thread with an outline of the fix and its size, then the user decides each P2.
-- When the user asks which prs need review, format as a short markdown-compatible list in a ```text block:
-
-```text
-- [slice number] SHORT_DESCRIPTION - +N / -M - [#....](...link...)
-- ...
-```
+- Once a PR is open, shepherd it to merge with `shepherding-prs.md`: fix CI and P1s, reply to P2s, and draft the Slack review request when it's ready.
 
 ## PR Format
 
@@ -113,12 +106,6 @@ Create A fresh, read-only agent runs the risk assessment and code review without
 Findings. P0 and P1 get fixed. P2 or lower, and edge cases, go to the user before any fix, written as in the Reply on P2 Threads section of review-comments.md.
 </risk-check-procedure>
 
-## Comment review 
-
-If a PR ends with comments / feedback from a review bot, follow review-comments.md: the owning agent fixes P0 and P1 findings and replies on P2 threads, and you tell the user how many replies need their review.
-
-Do not blindly accept p2 findings, and since we split work over many small PRs, be ESPECIALLY skeptical of "function has no production caller" findings.
-
 ## Conversing Effectively with the user
 
 When referencing PRs in chat, always use as much context as you have, including review site links, slice numbering, pr number/link, and changed lines:
@@ -127,12 +114,4 @@ When referencing PRs in chat, always use as much context as you have, including 
 
 ## Helping the user get PR reviews
 
-If a PR needs review, give them a slack pasteable list of up to 3 open/ready/green PRs
-
-```
-- [slice number](link to prd/tdd review site header) - [short description lowercase] - (+N / -M) - [full pr url]
-- ...
-```
-
-
-don't include prs with failing CI, open review comments, automated review in progress, or other things that should finish before human review. Be aware of CI checks that don't run until an approval (e.g. e2e stuff)
+Follow Ready for Review in `shepherding-prs.md`.

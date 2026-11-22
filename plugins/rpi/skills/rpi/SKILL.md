@@ -44,9 +44,9 @@ Update an existing document by default; create one when needed or requested. Whe
 - Keep messages short and plain.
 - Write every PR as slice (PR), linking the slice number to its heading on the review site and the PR number to the PR: `[5.5](https://review.example.com/slices.html#slice-5-5) ([#1234](https://git.example.com/org/repo/pull/1234))`, or `[5.6](https://review.example.com/slices.html#slice-5-6) (no PR)` before it opens.
 - Link straight to the slice or decision heading you mean.
-- Choose human reviewers with the user: someone who knows the area.
+- The user chooses human reviewers. Never request or re-request reviewers yourself.
 - For a tool that needs a CLI login, run it in a tmux session and share the login URL before you ask the user to approve.
-- Bring the user a review request only once the PR is as green as it can be before review, written as `- <what it does> - +N / -N - <PR link> - @reviewers`, and show any message to another person before it's sent.
+- Bring the user a review request only once the PR is ready, as in Ready for Review in `$SKILLBASE/references/shepherding-prs.md`, and show any message to another person before it's sent.
 
 ## Use the Task Directory
 
@@ -78,7 +78,9 @@ Use artifact filenames to locate the current phase when asked what's next, then 
 
 Read `$SKILLBASE/references/slicing.md` when planning or reordering slices, in an outline or anywhere else.
 
-Read `$SKILLBASE/references/shipping.md` when opening or stacking PRs, handling review findings, or choosing reviewers.
+Read `$SKILLBASE/references/shipping.md` when opening or stacking PRs or handling review findings.
+
+To push open PRs toward merge on each tick, read `$SKILLBASE/references/shepherding-prs.md`.
 
 When a PR has review comments, read `$SKILLBASE/references/review-comments.md`: have the owning agent fix P0 and P1 findings and reply on P2 threads, then tell the user how many replies need their review.
 
