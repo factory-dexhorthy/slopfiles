@@ -79,16 +79,22 @@ The user will tell you how many ready slots to keep. Default to 2.
 - It is acceptable to have multiple PRs from a single agent roughly only if an agent makes one PR and then later decides to break that PR up (other such exceptions may arise, use your judgement, but lean mildly toward new agent if unsure)
 
 
-## Autonomous first-pass polish
+## Polish Pass
 
-When an agent reports finished work or. a draft PR is ready: ensure it has done the following
+Keep the polish pass out of the implementation prompt. When the owning agent reports that its draft PR is pushed, send it this as a separate message:
 
-- simplify:
-    - "Review your complete body of work, and try to simplify it. Remove code that is now dead. Simplify code that can now be simpler. Reuse code that makes sense to be shared. Find leftovers from previous attempts." Do it again after each round of review fixes. Never change code that has already merged.
-- review any new or changed comments follow prose.md
-- use a local clone of K-Mistele/anti-slop - read the oxlint rules and apply them to the code that was just written
-- check for test clarity: No unexplained numbers or strings, helpers take named fields, test read top to bottom as "given X, expect Y", and expected values are written out, never computed with the code under test.
+```text
+Polish the draft before it goes ready:
+- Simplify: review your complete body of work and try to simplify it. Remove code that is now dead, simplify code that can now be simpler, reuse code that makes sense to share, and find leftovers from earlier attempts. Never change code that has already merged.
+- Make every new or changed comment follow prose.md.
+- Read the oxlint rules in a local clone of K-Mistele/anti-slop and apply them to the code you just wrote.
+- Check test clarity: no unexplained numbers or strings, helpers take named fields, each test reads top to bottom as "given X, expect Y", and expected values are written out, never computed with the code under test.
+Push once, then report back with the new head SHA.
+```
 
+Send the simplify step again after each round of review fixes.
+
+After the polish pass, mark the PR ready if a slot is open. Otherwise it waits as a draft, and the risk check below applies.
 ## Risk check
 
 The local risk check is optional. It only front-runs the repo's risk review for a PR that has to wait.
@@ -99,7 +105,7 @@ The local risk check is optional. It only front-runs the repo's risk review for 
 
 To run it:
 
-1. The owning agent opens the PR as a draft and reports "draft ready for risk check".
+1. The owning agent finishes the polish pass, with the PR still a draft.
 2. A fresh, read-only agent runs the risk assessment and code review without posting anything, then reports back.
 3. The owning agent fixes P0 and P1 findings. P2 and lower findings, and edge cases, go to the user before any fix, written as in Reply on P2 Threads in `review-comments.md`.
 
