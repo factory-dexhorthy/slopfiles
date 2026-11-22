@@ -1,6 +1,6 @@
 # Review Comments
 
-How to handle review comments on a PR. The agent that owns the PR fixes P0 and P1 findings and replies on each P2 thread. You send it that work, then point the user at the replies. Write every reply and message following `prose.md` and `show-me.md`. Start every reply the agent posts on a PR, including fix, defer, and drop replies, with the line `🤖 Agent reply` so readers can tell it apart from a human's. For how to talk with the user, follow the Work With the User section in `SKILL.md`.
+How to handle review comments on a PR. The agent that owns the PR fixes P0 and P1 findings and replies on each P2 thread. You send it that work, then point the user at the replies. Write every reply and message following `prose.md` and `show-me.md`. End every reply the agent posts on a PR, including fix, defer, and drop replies, with the small-text line `<sub>Written by an agent</sub>` so readers can tell it apart from a human's. For how to talk with the user, follow the Work With the User section in `SKILL.md`.
 
 ## Send the Owning Agent
 
