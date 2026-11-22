@@ -73,7 +73,7 @@ The user will tell you how many ready slots to keep. Default to 2.
 - Keep each issue's state in step with its PR: no PR, draft, in review, merged.
 - Update the tree when a slice is split, merged, or dropped.
 
-## Shipping with agents 
+## Shipping with agents
 
 - If you are an orchestrator over SpawnAgents, use roughly one agent per PR, and ensure it reads all RPI docs before starting work (you should be launching them with instructions akin to ~`/rpi implement-outline` which should steer them to review all RPI docs already).
 - It is acceptable to have multiple PRs from a single agent roughly only if an agent makes one PR and then later decides to break that PR up (other such exceptions may arise, use your judgement, but lean mildly toward new agent if unsure)
@@ -84,7 +84,7 @@ The user will tell you how many ready slots to keep. Default to 2.
 Keep the polish pass out of the implementation prompt. When the owning agent reports that its draft PR is pushed, send it this as a separate message:
 
 ```text
-Polish the draft before it goes ready:
+Polish the work:
 - Simplify: review your complete body of work and try to simplify it. Remove code that is now dead, simplify code that can now be simpler, reuse code that makes sense to share, and find leftovers from earlier attempts. Never change code that has already merged.
 - Make every new or changed comment follow prose.md.
 - Read the oxlint rules in a local clone of K-Mistele/anti-slop and apply them to the code you just wrote.
