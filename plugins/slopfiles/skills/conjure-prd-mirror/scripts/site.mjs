@@ -64,7 +64,7 @@ renderer.code = (tok) => tok.lang === 'mermaid' ? `<pre class="mermaid">${tok.te
   : baseCode(tok);
 const title = (md.match(/^# (.*)$/m) || [, 'PRD'])[1].replace(/^PRD:\s*/, '');
 md = md.replace(/^# .*\n/m, '');
-const sections = [...md.matchAll(/^## (.*)$/gm)].map((m) => m[1]);
+const sections = marked.lexer(md).filter((t) => t.type === 'heading' && t.depth === 2).map((t) => t.text);
 const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 let n = 0;
 renderer.heading = (tok) => {
