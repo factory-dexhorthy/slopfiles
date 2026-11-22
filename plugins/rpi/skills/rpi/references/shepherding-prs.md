@@ -26,6 +26,7 @@ A PR is ready for review when:
 
 - every required check passes,
 - every thread you can address has a reply and is resolved, or waits on the user's fix/defer/drop call,
+- every non-review thread comment/question has an answer
 - it isn't a draft, and
 - no automated review is still running.
 
