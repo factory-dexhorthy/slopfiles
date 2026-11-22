@@ -95,6 +95,7 @@ Push once, then report back with the new head SHA.
 Send the simplify step again after each round of review fixes.
 
 After the polish pass, mark the PR ready if a slot is open. Otherwise it waits as a draft, and the risk check below applies.
+
 ## Risk check
 
 The local risk check is optional. It only front-runs the repo's risk review for a PR that has to wait.
