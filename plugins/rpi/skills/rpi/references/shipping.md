@@ -91,21 +91,19 @@ When an agent reports finished work or. a draft PR is ready: ensure it has done 
 
 ## Risk check
 
-If your PR process includes a risk review, AND all human-review slots are taken, then follow the risk check procedure to front-run any risk-check findings.
+The local risk check is optional. It only front-runs the repo's risk review for a PR that has to wait.
 
-A clean risk check increases the chance that a PR can be merged without a human.
+- **A ready slot is open:** skip the local risk check. Mark the PR ready and let the repo's own risk review and review bot run on it.
+- **Every ready slot is taken and the PR waits as a draft in the queue:** run the local risk check while it waits, so it comes out of the queue with the findings already fixed. A clean risk check makes it more likely the PR merges without a human.
+- **The repo has no risk review:** skip it.
 
-<risk-check-procedue>
-When the work is done, agents should: 
+To run it:
 
-Open as a draft right away and report "draft ready for risk check".
+1. The owning agent opens the PR as a draft and reports "draft ready for risk check".
+2. A fresh, read-only agent runs the risk assessment and code review without posting anything, then reports back.
+3. The owning agent fixes P0 and P1 findings. P2 and lower findings, and edge cases, go to the user before any fix, written as in Reply on P2 Threads in `review-comments.md`.
 
-After the agent reports its done:
-
-Create A fresh, read-only agent runs the risk assessment and code review without posting anything, then reports back.
-Findings. P0 and P1 get fixed. P2 or lower, and edge cases, go to the user before any fix, written as in the Reply on P2 Threads section of review-comments.md.
-</risk-check-procedure>
-
+When a slot opens, mark the PR ready whether or not the local risk check has finished.
 ## Conversing Effectively with the user
 
 When referencing PRs in chat, always use as much context as you have, including review site links, slice numbering, pr number/link, and changed lines:
