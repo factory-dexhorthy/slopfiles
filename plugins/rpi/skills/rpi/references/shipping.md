@@ -104,6 +104,7 @@ To run it:
 3. The owning agent fixes P0 and P1 findings. P2 and lower findings, and edge cases, go to the user before any fix, written as in Reply on P2 Threads in `review-comments.md`.
 
 When a slot opens, mark the PR ready whether or not the local risk check has finished.
+
 ## Conversing Effectively with the user
 
 When referencing PRs in chat, always use as much context as you have, including review site links, slice numbering, pr number/link, and changed lines:
