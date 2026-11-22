@@ -126,7 +126,8 @@ pre.mermaid svg { max-height: 520px; max-width: 100%; }
 .mz-panel svg { width: 100%; height: 100%; }
 .mz-panel svg foreignObject { overflow: visible; }
 .mz-x { position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; border-radius: 6px; border: 1px solid var(--ln2); background: var(--s2); color: var(--t1); font: 15px 'Geist', system-ui, sans-serif; cursor: pointer; }
-.mz-x:hover { color: var(--oT); border-color: var(--oT); }p:has(> a > img) { max-width: none; }
+.mz-x:hover { color: var(--oT); border-color: var(--oT); }
+p:has(> a > img) { max-width: none; }
 img { display: block; width: 100%; border-radius: 10px; box-shadow: 0 0 0 1px var(--ln2), 0 20px 50px var(--shadow); cursor: zoom-in; margin: 18px 0 6px; }
 a:has(img):hover img { box-shadow: 0 0 0 1px var(--o), 0 20px 50px var(--shadow); }
 blockquote { border-left: 2px solid var(--o); margin: 0; padding-left: 14px; }
@@ -180,7 +181,8 @@ const mermaidInit = `<script src="mermaid.min.js"></script><script>(() => {
     b.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); openZoom(pre); });
     pre.append(b);
   };
-  addEventListener('keydown', (e) => { if (e.key === 'Escape') closeZoom(); });  // Mermaid sizes node boxes from measured text, so measure with Geist loaded or labels clip once it arrives.
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') closeZoom(); });
+  // Mermaid sizes node boxes from measured text, so measure with Geist loaded or labels clip once it arrives.
   document.fonts.ready.then(draw);
   addEventListener('themechange', draw);
   matchMedia('(prefers-color-scheme: light)').addEventListener('change', draw);
