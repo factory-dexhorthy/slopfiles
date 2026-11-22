@@ -26,9 +26,10 @@ Each reply, briefly, in this order:
 
 1. What goes wrong, in plain words: the steps that trigger it, as a short numbered list, or as a small sequence diagram if timing or order matters.
 2. Today's code: a few lines of pseudocode with an arrow at the bad line. Name the file and line.
-3. The fix as a diff of that same pseudocode, plus its size, such as "about 5 lines plus a test".
+3. The fix as a diff of that same pseudocode.
 4. Whether this PR caused it (verified or unverified), and how likely it is to happen.
-5. A recommendation: fix it in this PR, defer it to a later cleanup slice, or drop it.
+5. A recommendation: fix it in this PR, defer it to a follow-up issue, or drop it.
+6. A last line, on its own, that gives the size and asks the reviewer to decide: "Estimated ~N production lines - fix, defer to follow-up issue, or drop?" Count only production lines added plus removed, not tests.
 
 No preamble and no extra options.
 
