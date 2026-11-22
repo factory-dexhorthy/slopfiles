@@ -81,7 +81,7 @@ const body = pairFigures(marked.parse(md, { renderer }).replace(/^<\/section>/, 
 const mark = fs.readFileSync(path.join(HERE, 'factory-mark.svg'), 'utf8');
 const built = new Date().toISOString().slice(0, 16).replace('T', ' ');
 // Dark is the default; light applies when the reader picks it or the system prefers it and they haven't picked dark.
-const dark = 'color-scheme: dark; --mode: dark; --oT: #ffa675; --bg: #060505; --s1: #0c0b0a; --s2: #151311; --ln: #1d1a18; --ln2: #2e2926; --t1: #fdfcfb; --t2: #e4ded9; --t3: #a39891; --topbg: rgba(6,5,5,.82); --shadow: var(--shadow); --da-bg: rgba(46,160,67,.22); --da: #aff5b4; --dd-bg: rgba(248,81,73,.22); --dd: #ffc1bc; --dh: #79c0ff;';
+const dark = 'color-scheme: dark; --mode: dark; --oT: #ffa675; --bg: #060505; --s1: #0c0b0a; --s2: #151311; --ln: #1d1a18; --ln2: #2e2926; --t1: #fdfcfb; --t2: #e4ded9; --t3: #a39891; --topbg: rgba(6,5,5,.82); --shadow: rgba(0,0,0,.5); --da-bg: rgba(46,160,67,.22); --da: #aff5b4; --dd-bg: rgba(248,81,73,.22); --dd: #ffc1bc; --dh: #79c0ff;';
 const light = 'color-scheme: light; --mode: light; --oT: #c2410c; --bg: #fdfcfb; --s1: #f6f3f0; --s2: #eeeae6; --ln: #e4dfda; --ln2: #d2cbc5; --t1: #141110; --t2: #2b2624; --t3: #6b625c; --topbg: rgba(253,252,251,.85); --shadow: rgba(0,0,0,.12); --da-bg: #dafbe1; --da: #116329; --dd-bg: #ffebe9; --dd: #82071e; --dh: #0550ae;';
 const style = `<style>
 :root { --o: #ff5a00; --mono: 'Geist Mono', ui-monospace, monospace; ${dark} }
@@ -117,9 +117,16 @@ pre code { background: none; box-shadow: none; padding: 0; color: var(--t1); }
 pre code.diff { display: inline-block; min-width: 100%; }
 .dl { display: block; padding: 0 6px; margin: 0 -6px; } .da { background: var(--da-bg); color: var(--da); } .dd { background: var(--dd-bg); color: var(--dd); } .dh { color: var(--dh); } .dm { color: var(--t3); }
 .theme { padding: 6px 10px; border-radius: 6px; border: 1px solid var(--ln2); background: var(--s2); color: var(--t1); font: 500 12.5px 'Geist', system-ui, sans-serif; cursor: pointer; }
-pre.mermaid { background: var(--s1); text-align: center; padding: 20px; }
+pre.mermaid { background: var(--s1); text-align: center; padding: 20px; position: relative; }
 pre.mermaid svg { max-height: 520px; max-width: 100%; }
-p:has(> a > img) { max-width: none; }
+.mz { position: absolute; top: 8px; right: 8px; display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; padding: 0; border-radius: 6px; border: 1px solid var(--ln2); background: var(--s2); color: var(--t2); cursor: pointer; opacity: .75; }
+.mz:hover, .mz:focus-visible { opacity: 1; color: var(--oT); border-color: var(--oT); }
+.mz-box { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 3vh 3vw; background: color-mix(in srgb, var(--bg) 78%, transparent); backdrop-filter: blur(6px); cursor: zoom-out; }
+.mz-panel { position: relative; box-sizing: border-box; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; padding: 40px 24px 24px; background: var(--s1); border: 1px solid var(--ln2); border-radius: 12px; box-shadow: 0 30px 80px var(--shadow); cursor: default; }
+.mz-panel svg { width: 100%; height: 100%; }
+.mz-panel svg foreignObject { overflow: visible; }
+.mz-x { position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; border-radius: 6px; border: 1px solid var(--ln2); background: var(--s2); color: var(--t1); font: 15px 'Geist', system-ui, sans-serif; cursor: pointer; }
+.mz-x:hover { color: var(--oT); border-color: var(--oT); }p:has(> a > img) { max-width: none; }
 img { display: block; width: 100%; border-radius: 10px; box-shadow: 0 0 0 1px var(--ln2), 0 20px 50px var(--shadow); cursor: zoom-in; margin: 18px 0 6px; }
 a:has(img):hover img { box-shadow: 0 0 0 1px var(--o), 0 20px 50px var(--shadow); }
 blockquote { border-left: 2px solid var(--o); margin: 0; padding-left: 14px; }
@@ -143,9 +150,38 @@ const mermaidInit = `<script src="mermaid.min.js"></script><script>(() => {
     const c = getComputedStyle(document.documentElement), v = (n) => c.getPropertyValue(n).trim();
     mermaid.initialize({ startOnLoad: false, theme: 'base', fontFamily: 'Geist', themeVariables: { darkMode: v('--mode') === 'dark', background: v('--s1'), primaryColor: v('--s2'), primaryBorderColor: v('--ln2'), primaryTextColor: v('--t1'), secondaryColor: v('--s2'), tertiaryColor: v('--s1'), lineColor: v('--o'), textColor: v('--t2'), edgeLabelBackground: v('--s1'), clusterBkg: v('--s1'), fontSize: '14px' } });
     els.forEach((e) => { e.removeAttribute('data-processed'); e.textContent = e.dataset.src; });
-    mermaid.run({ nodes: els });
+    mermaid.run({ nodes: els }).then(() => els.forEach(addZoom));
   };
-  draw();
+  // Each drawn diagram gets a fullscreen button; the lightbox shows a copy of the SVG scaled to the viewport.
+  const icon = '<svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4"/></svg>';
+  let box = null;
+  const closeZoom = () => { if (box) { box.remove(); box = null; document.body.style.overflow = ''; } };
+  const openZoom = (pre) => {
+    const svg = pre.querySelector('svg');
+    if (!svg) return;
+    closeZoom();
+    box = document.createElement('div');
+    box.className = 'mz-box';
+    box.innerHTML = '<div class="mz-panel"><button class="mz-x" type="button" title="Close (Esc)" aria-label="Close">✕</button></div>';
+    const copy = svg.cloneNode(true);
+    copy.removeAttribute('width'); copy.removeAttribute('height');
+    copy.style.maxWidth = 'none'; copy.style.maxHeight = 'none';
+    box.firstChild.append(copy);
+    box.addEventListener('click', (e) => { e.stopPropagation(); if (e.target === box || e.target.closest('.mz-x')) closeZoom(); });
+    document.body.append(box);
+    document.body.style.overflow = 'hidden';
+  };
+  const addZoom = (pre) => {
+    if (!pre.querySelector('svg') || pre.querySelector('.mz')) return;
+    const b = document.createElement('button');
+    b.className = 'mz'; b.type = 'button'; b.title = 'Fullscreen'; b.setAttribute('aria-label', 'Open diagram fullscreen');
+    b.innerHTML = icon;
+    // Stop the click here so the comment layer doesn't treat it as a click on the diagram.
+    b.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); openZoom(pre); });
+    pre.append(b);
+  };
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') closeZoom(); });  // Mermaid sizes node boxes from measured text, so measure with Geist loaded or labels clip once it arrives.
+  document.fonts.ready.then(draw);
   addEventListener('themechange', draw);
   matchMedia('(prefers-color-scheme: light)').addEventListener('change', draw);
 })();</script>`;
