@@ -40,7 +40,7 @@ Leave out PRs with failing checks, open review findings, or automated review sti
 
 ## Report to the User
 
-After each tick, give one line per PR: what you changed, and what it waits on and from whom. Name the PR as slice (PR), as in `SKILL.md`. Point the user to P2 replies and threads that ask for a specific person, as in Tell the User in `review-comments.md`.
+After each tick, give one line per PR: what you changed, and what it waits on and from whom. Name the PR as slice (PR), as in `SKILL.md`. Point the user to the PR for P2 replies and for threads that ask a specific person, as in Tell the User in `review-comments.md`. Don't ask about open findings, and don't mention findings that don't have a reply yet.
 
 ## Never
 

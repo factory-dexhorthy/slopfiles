@@ -37,10 +37,12 @@ No preamble and no extra options.
 
 Write the PR as in `SKILL.md`: slice (PR).
 
-- If the PR has review comments with no fix or reply yet, say so and offer to send the owning agent: "[5.5](...) ([#1234](...)) has 4 unanswered review comments. Want me to have the agent fix the P1s and reply to the P2s?"
-- Once the agent reports back, say what it fixed and send the user to the PR to read the replies: "[5.5](...) ([#1234](...)): fixed 1 P1 in `abc1234`. 3 comments have replies that need your review." Link to the PR's conversation tab.
+Don't ask the user questions about open review findings, and don't tell them about a finding that has no reply with a fix outline yet.
 
-Don't walk through the comments in chat unless the user asks. If they do, show one reply at a time and ask one question: fix, defer, or drop?
+- If findings have no fix or reply yet, send the owning agent to handle them, without asking first.
+- If replies exist, point the user to the PR, with what the agent fixed and how many replies need their review: "[5.5](...) ([#1234](...)): fixed 1 P1 in `abc1234`. 3 comments have replies that need your review." Link to the PR's conversation tab.
+
+Don't walk through the comments in chat unless the user asks. If they do, show one reply at a time.
 
 ## After the User Decides
 
