@@ -38,9 +38,9 @@ submitForm
 
 ```text
 src/
-├── commands/       # parses user actions
-├── sessions/       # owns session state
-└── transport/      # sends API requests
+  commands/       # parses user actions
+  sessions/       # owns session state
+  transport/      # sends API requests
 ```
 
 - Show component interaction, control flow, or data flow with Mermaid:
@@ -71,14 +71,21 @@ For a component change:
 For a file-layout change:
 
 ```diff
- src/
- ├── commands/
-+│   └── show-me.ts       # expands the slash command
- ├── sessions/
--└── transport.ts
-+└── transport/
-+    ├── client.ts
-+    └── stream.ts
+ packages/api/src/schemas/
+~  task.ts                           add an optional `dueDate` field
+ packages/server/src/
+~  tasks/reminders.ts
+~    scheduleReminder                skip tasks without a due date
++    cancelReminder                  clear the reminder when a task closes
++  tasks/reminders.test.ts           closed tasks get no reminder
+~  task-handler.ts                   reject due dates in the past
+-  legacy-reminders.ts               folded into tasks/reminders.ts
+~ apps/mobile/**/Generated/          regenerate from task.ts
+ packages/web/src/tasks/
+~  TaskRow.tsx
+~    <TaskRow>                       show the due date
+-    <OverdueBadge>                  replaced by the overdue variant of <TaskStatus>
+~  locales/*/tasks.json              add due date strings
 ```
 
 For a call-tree or call-stack change:
