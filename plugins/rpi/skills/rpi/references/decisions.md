@@ -10,7 +10,7 @@ List decisions from the most fundamental to the least. Each one may depend only 
 
 Write each decision as what we'll do, in plain prose, following `prose.md` and `show-me.md`. Don't frame it as a question. Don't call it a proposal, option, recommendation, or decision. Use a header that states the result, such as "D2. Comments stay in the browser, one set per page."
 
-Put the alternatives in a `<details>` block right after the decision. Give each alternative the same detail and the same kind of view as the chosen approach, then say why we chose the approach above instead. Leave a blank line after `</summary>` so the Markdown inside renders. Leave the block out when there is no real alternative.
+Put the alternatives in a `<details>` block right after the decision. Give each alternative the same detail and the same kind of view as the chosen approach, then say why we chose the approach above instead. Leave a blank line after `</summary>` and after `</details>` so the Markdown inside and the next header render. Leave the block out when there is no real alternative.
 
 ````markdown
 ### D2. Comments stay in the browser, one set per page
@@ -37,6 +37,8 @@ on(save comment)
 This lets several reviewers see each other's comments, but every published page would need a server and sign-in. One reviewer pasting into the chat doesn't need either.
 
 </details>
+
+### D3. Each comment is anchored to a block
 ````
 
 ## Update From Feedback
