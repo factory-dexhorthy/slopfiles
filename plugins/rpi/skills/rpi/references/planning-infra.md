@@ -24,7 +24,8 @@ Inline `$SKILLBASE/assets/review-comments.js` into every published page, in a `<
 
 - Clicking any block opens a box to comment on it.
 - "Copy N comments" puts every comment on the clipboard as one block for the user to paste into the agent chat.
-- The agent addresses each comment, then the user clicks Clear.
+- "Copy and clear" copies the same block, then deletes the comments from the page.
+- "Clear" deletes the comments without copying, once the agent has addressed them.
 
 ```xml
 <page-review page="https://review.example.com/prd.html">

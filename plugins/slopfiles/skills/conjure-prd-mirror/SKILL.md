@@ -88,4 +88,4 @@ Reviewers hover a block, click it, and type a comment. Comments stay in their br
 2. Treat each comment as a change request or a question. Change what is clear. Ask about the rest one at a time.
 3. Rebuild and redeploy, then list each comment with what you changed or why you didn't.
 
-Reviewers' comments don't clear after you deploy. Tell them to use Clear in the header once their comments are handled.
+Reviewers' comments don't clear after you deploy. The header offers "Copy and clear" to copy and delete in one step, and Clear to delete once their comments are handled.

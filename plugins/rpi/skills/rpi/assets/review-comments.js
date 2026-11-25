@@ -108,8 +108,9 @@
 
   const bar = ui('div', 'rc-bar');
   const copyBtn = ui('button', 'rc-primary');
+  const copyClearBtn = ui('button', '', 'Copy and clear');
   const clearBtn = ui('button', '', 'Clear');
-  bar.append(copyBtn, clearBtn);
+  bar.append(copyBtn, copyClearBtn, clearBtn);
   document.body.appendChild(bar);
 
   const render = () => {
@@ -117,7 +118,7 @@
     for (const c of comments) find(c)?.setAttribute('data-rc-marked', '');
     const n = comments.length;
     copyBtn.textContent = `Copy ${n} comment${n === 1 ? '' : 's'}`;
-    copyBtn.disabled = clearBtn.disabled = n === 0;
+    copyBtn.disabled = copyClearBtn.disabled = clearBtn.disabled = n === 0;
   };
 
   const closeBox = () => { box?.remove(); box = null; };
@@ -182,26 +183,37 @@
   ].join('\n');
 
   const writeClipboard = async (text) => {
-    try { await navigator.clipboard.writeText(text); return; } catch {}
+    try { await navigator.clipboard.writeText(text); return true; } catch {}
     const t = ui('textarea');
     t.value = text;
     t.style.cssText = 'position:fixed;top:0;left:0;opacity:0';
     document.body.appendChild(t);
     t.select();
-    document.execCommand('copy');
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch {}
     t.remove();
+    return ok;
+  };
+
+  const clearAll = () => {
+    comments = [];
+    save(); closeBox(); render();
   };
 
   copyBtn.onclick = async () => {
-    await writeClipboard(toXml());
+    if (!(await writeClipboard(toXml()))) return;
     copyBtn.textContent = 'Copied';
     setTimeout(render, 1200);
   };
 
-  clearBtn.onclick = () => {
-    comments = [];
-    save(); closeBox(); render();
+  copyClearBtn.onclick = async () => {
+    if (!(await writeClipboard(toXml()))) return;
+    clearAll();
+    copyClearBtn.textContent = 'Copied';
+    setTimeout(() => { copyClearBtn.textContent = 'Copy and clear'; }, 1200);
   };
+
+  clearBtn.onclick = clearAll;
 
   const blockAt = (t) => {
     if (!(t instanceof Element) || t.closest(SKIP)) return undefined;

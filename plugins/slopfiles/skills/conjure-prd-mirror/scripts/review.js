@@ -76,7 +76,7 @@ img.rv-has { box-shadow: 0 0 0 2px #ff5a00, 0 20px 50px var(--shadow); }
     return lines.join('\n');
   };
 
-  let copyBtn, clearBtn;
+  let copyBtn, copyClearBtn, clearBtn;
   const refresh = () => {
     document.querySelectorAll('.rv-badge').forEach((b) => b.remove());
     nodes.forEach((el) => el.classList.remove('rv-has'));
@@ -104,7 +104,7 @@ img.rv-has { box-shadow: 0 0 0 2px #ff5a00, 0 20px 50px var(--shadow); }
     const n = comments.length;
     copyBtn.textContent = `Copy ${n} comment${n === 1 ? '' : 's'}`;
     copyBtn.disabled = n === 0;
-    clearBtn.style.display = n ? '' : 'none';
+    copyClearBtn.style.display = clearBtn.style.display = n ? '' : 'none';
   };
 
   const wrap = (el) => {
@@ -157,23 +157,35 @@ ${needName ? '<input class="nm" placeholder="Your name (saved for next time)">' 
     nodes = [...document.querySelectorAll(SEL)].filter((el) => !el.closest('.top, footer, .rv-pop'));
     const bar = document.createElement('span');
     bar.className = 'rv-bar';
-    bar.innerHTML = '<span class="rv-tip">Click any block to comment</span><button class="rv-btn p copy"></button><button class="clear" title="Delete all comments on this page">Clear</button>';
+    bar.innerHTML = '<span class="rv-tip">Click any block to comment</span><button class="rv-btn p copy"></button><button class="clear copy-clear" title="Copy all comments, then delete them from this page">Copy and clear</button><button class="clear" title="Delete all comments on this page">Clear</button>';
     copyBtn = bar.querySelector('.copy');
-    clearBtn = bar.querySelector('.clear');
+    copyClearBtn = bar.querySelector('.copy-clear');
+    clearBtn = bar.querySelector('.clear:not(.copy-clear)');
     const top = document.querySelector('.top');
     top.insertBefore(bar, top.querySelector('.cta'));
-    copyBtn.addEventListener('click', async () => {
+    const copyXml = async () => {
       const xml = toXml();
-      try { await navigator.clipboard.writeText(xml); } catch {
-        const t = document.createElement('textarea'); t.value = xml; document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove();
-      }
+      try { await navigator.clipboard.writeText(xml); return true; } catch {}
+      const t = document.createElement('textarea'); t.value = xml; document.body.appendChild(t); t.select();
+      let ok = false;
+      try { ok = document.execCommand('copy'); } catch {}
+      t.remove();
+      return ok;
+    };
+    const clearAll = () => { comments = []; save(comments); refresh(); close(); };
+    copyBtn.addEventListener('click', async () => {
+      if (!(await copyXml())) return;
       const label = copyBtn.textContent;
       copyBtn.textContent = 'Copied';
       setTimeout(() => { copyBtn.textContent = label; }, 1400);
     });
-    clearBtn.addEventListener('click', () => {
-      comments = []; save(comments); refresh();
+    copyClearBtn.addEventListener('click', async () => {
+      if (!(await copyXml())) return;
+      clearAll();
+      copyBtn.textContent = 'Copied';
+      setTimeout(refresh, 1400);
     });
+    clearBtn.addEventListener('click', clearAll);
     let hovered = null;
     document.addEventListener('mouseover', (e) => {
       if (e.target.closest('.rv-pop, .rv-badge')) return;
