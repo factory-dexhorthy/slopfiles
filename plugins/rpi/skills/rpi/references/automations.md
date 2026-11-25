@@ -11,7 +11,7 @@ When the task's first PR opens, create three automations that ping the orchestra
 - **Work hours, 9:00 to 18:00 Pacific, Monday to Friday, every 30 minutes:**
   - `*/30 16-23 * * 1-5` for mornings and afternoons.
   - `*/30 0-1 * * 2-6` for evenings.
-- **Off hours, every 3 hours:** `0 */3 * * *`.
+- **Weekday off hours, every 3 hours:** `0 3-15/3 * * 1-5`.
 - **Prompt:**
 
 ```text
