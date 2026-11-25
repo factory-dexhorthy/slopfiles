@@ -1,6 +1,6 @@
 {
   "name": "slopfiles",
-  "description": "Dex's general-purpose skills: conjure-prd-mirror, dr-showme",
+  "description": "Dex's general-purpose skills: conjure-prd-mirror, dr-showme, eval-showme",
   "version": "0.1.0",
   "author": {
     "name": "dex"

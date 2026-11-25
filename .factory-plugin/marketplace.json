@@ -7,7 +7,7 @@
   "plugins": [
     {
       "name": "slopfiles",
-      "description": "General-purpose skills: conjure-prd-mirror, dr-showme",
+      "description": "General-purpose skills: conjure-prd-mirror, dr-showme, eval-showme",
       "source": "./plugins/slopfiles",
       "category": "productivity",
       "tags": ["prd", "conjure", "review"]
