@@ -18,7 +18,7 @@ Before replying or fixing, for each comment:
 - Read the comment and the code it points at on the PR's current head.
 - Check whether this PR caused it or it already happens on the base branch. Check it yourself; don't just repeat what the review bot says. If you can't tell, say "unverified".
 - Work out the smallest fix and roughly how many lines it is.
-- Be skeptical of "function has no production caller" findings. Work is split over many small PRs, so the caller often lands in a later slice.
+- For "unused code" and "function has no production caller" findings, check the slice plan. When a later slice calls it, mark the export `/** @public */` as in Keep Changes Small in `shipping.md`, reply with where it's used, such as "Used in [3.2.2](...) ([#1240](...)).", and resolve the thread. Otherwise treat it as a real finding.
 
 ## Reply on P2 Threads
 

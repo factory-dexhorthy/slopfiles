@@ -6,6 +6,7 @@ How to get each slice merged and reviewed. Plan the slices with `slicing.md` fir
 
 - Within a slice, design each PR so an automated risk reviewer can approve it alone: small, well tested, and away from startup and hot paths.
 - When a phase comes out too big, split it into numbered sub-PRs: 4.2.1, 4.2.2.
+- CI blocks code without a production caller. Make each sub-PR as small as possible. When its caller lands in a later sub-PR, mark the export with a `/** @public */` comment, which knip skips, as in `packages/common/src/api/organization/routing/index.ts`. Remove the tag in the PR that adds the caller.
 - aim for <300 lines of production code changed per PR, but this is a loose ceiling. some may be much smaller, and splitting may be so inconvenient as to justify going over.
 - Each PR carries its own tests for what it adds, so tests land with their code.
 - PR titles should include the slice number, if applicable, e.g. feat(cli): 4.2.1: ...
@@ -68,7 +69,7 @@ The user will tell you how many ready slots to keep. Default to 2.
   └── Slice 2: ...
   ```
 
-- Mirror the plan's dependencies as "blocked by" relations.
+- Don't add explicit blocking dependencies between steps; just file the issues.
 - Each PR names the issue it closes (for example "Closes ABC-123"), so merging closes it.
 - Keep each issue's state in step with its PR: no PR, draft, in review, merged.
 - Update the tree when a slice is split, merged, or dropped.
