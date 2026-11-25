@@ -8,7 +8,7 @@ When a PR has open review comments, tell the agent that owns the PR to:
 
 - Check each comment first (below).
 - Fix every P0 and P1 finding, following Push Fixes.
-- Resolve any suggestion to refactor translation strings right away, with a one-line reply and no change.
+- Resolve any suggestion to reuse an existing translation string that belongs to another component or experience right away, with a one-line reply and no change.
 - Reply on each P2 or lower thread with the explanation and fix outline below. Don't fix it yet, and leave the thread open.
 - Report back with the fixed threads, the new head SHA, and how many P2 threads got a reply.
 
