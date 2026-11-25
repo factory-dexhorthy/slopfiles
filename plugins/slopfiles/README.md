@@ -6,7 +6,7 @@ General-purpose skills.
 | --- | --- | --- |
 | `conjure-prd-mirror` | Publishes a Markdown PRD as a Conjure site with click-to-comment review. Reviewers copy their comments as XML and paste them back to the agent. | Hand-maintained in this repo. |
 | `dr-showme` | `/dr-showme`: the rpi `show-me` skill for Droid's desktop and web chat, plus `<json-render>` charts, Mermaid swimlanes, and `<droid-visualization>` mockups. | Copied from `plugins/rpi/skills/rpi/references/show-me.md`, plus a chat section. |
-| `eval-showme` | `/eval-showme`: lays out an eval case turn by turn, with the human message, an outline of the tool calls that matter, and the deterministic, state, and judge checks that grade it. | Hand-maintained in this repo. |
+| `eval-showme` | `/eval-showme`: lays out an eval case turn by turn (human message, the tool calls that matter, and the deterministic, state, and judge checks), or tells how a prompt reached its wording, line by line, with results per model before and after each line. | Hand-maintained in this repo. |
 
 ## conjure-prd-mirror
 
