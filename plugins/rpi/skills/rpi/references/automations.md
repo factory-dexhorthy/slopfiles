@@ -4,11 +4,14 @@ Milestones in a task that start an automation, and the automation each one start
 
 ## First PR Opens
 
-Keep at most one PR automation at once. If one already exists, keep it instead of creating another.
+Keep at most one set of PR automations at once. If they already exist, keep them instead of creating more.
 
-When the task's first PR opens, create an automation that pings the orchestrator's session:
+When the task's first PR opens, create three automations that ping the orchestrator's session, all with the prompt below. Automations only take UTC, and Pacific evenings fall on the next day in UTC:
 
-- **When:** every 30 minutes, Monday to Friday, 9:00 to 18:00 Pacific. Automations only take UTC, so use `*/30 0-1,16-23 * * 1-6`. It covers that window in both daylight and standard time.
+- **Work hours, 9:00 to 18:00 Pacific, Monday to Friday, every 30 minutes:**
+  - `*/30 16-23 * * 1-5` for mornings and afternoons.
+  - `*/30 0-1 * * 2-6` for evenings.
+- **Off hours, every 3 hours:** `0 */3 * * *`.
 - **Prompt:**
 
 ```text
@@ -17,4 +20,4 @@ If nothing changed since the last check, end your turn without saying anything.
 If any PRs are green, resolved, and ready for review, output the Slack block for all of them, as in Ready for Review in shepherding-prs.md.
 ```
 
-Cancel it when the task's last PR merges or the user stops the task.
+Cancel all three when the task's last PR merges or the user stops the task.
