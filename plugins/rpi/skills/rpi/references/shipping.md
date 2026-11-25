@@ -73,6 +73,7 @@ The user will tell you how many ready slots to keep. Default to 2.
 - Each PR names the issue it closes (for example "Closes ABC-123"), so merging closes it.
 - Keep each issue's state in step with its PR: no PR, draft, in review, merged.
 - Update the tree when a slice is split, merged, or dropped.
+- For a flagged ship, file a last issue to remove the flag once it's on for everyone, as in `feature-flags.md`.
 
 ## Shipping with agents
 

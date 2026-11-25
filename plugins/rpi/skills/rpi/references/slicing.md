@@ -16,7 +16,7 @@ Ask of every slice: "After this merges, what can we run that we couldn't before?
 
 ## Work Backward From Fake Data
 
-Start from the outside: the thing the user will see or judge. Fake whatever sits underneath it, behind a feature flag if needed, so the user can judge that first. Then make the fake parts real, one slice at a time, working inward.
+Start from the outside: the thing the user will see or judge. Fake whatever sits underneath it, behind a feature flag if needed, so the user can judge that first. Then make the fake parts real, one slice at a time, working inward. Follow `feature-flags.md` for what to gate and for the last item that removes the flag.
 
 ## Start With a Walking Skeleton
 
