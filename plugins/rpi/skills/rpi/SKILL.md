@@ -82,6 +82,8 @@ Read `$SKILLBASE/references/shipping.md` when opening or stacking PRs or handlin
 
 To push open PRs toward merge on each tick, read `$SKILLBASE/references/shepherding-prs.md`.
 
+When the task reaches a milestone, such as its first PR opening, read `$SKILLBASE/references/automations.md` and create the automation it lists.
+
 When a PR has review comments, read `$SKILLBASE/references/review-comments.md`: have the owning agent fix P0 and P1 findings and reply on P2 threads, then tell the user how many replies need their review.
 
 ## Share and Review Documents
